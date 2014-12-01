@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 @Entity(name = "juiz")
-public class Juiz {
+public class Juiz {//implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int idJuiz;
