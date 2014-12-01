@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity(name = "fase")
-public class Fase {
+public class Fase {//implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idFase;
