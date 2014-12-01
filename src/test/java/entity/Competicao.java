@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 @Entity
-public class Competicao {
+public class Competicao {//implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idEvento;
