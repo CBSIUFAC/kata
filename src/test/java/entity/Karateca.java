@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Karateca implements Serializable{
    @Id
+   //@GeneratedValue(strategy=GenerationType.AUTO)
    private String rgKarateca;
    @Column(nullable=false)
    private String nome;
