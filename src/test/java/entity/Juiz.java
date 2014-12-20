@@ -18,16 +18,16 @@ public class Juiz {//implements Serializable
 	@Column
 	private String nome;
 	@OneToMany(mappedBy="juiz")
-	  private List<Avaliacao> avaliacoes;
+	private List<Avaliacao> avaliacoes;
 	public List<Avaliacao> getAvaliacoes() {
 		return avaliacoes;
 	}
 	
-	public int getIdJui() {
+	public int getIdJuiz() {
 		return idJuiz;
 	}
-	public void setIdJui(int idJui) {
-		idJuiz = idJui;
+	public void setIdJuiz(int idJuiz) {
+		idJuiz = idJuiz;
 	}
 	public String getNome() {
 		return nome;
