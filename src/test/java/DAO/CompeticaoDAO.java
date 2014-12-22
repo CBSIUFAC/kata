@@ -53,7 +53,7 @@ public class CompeticaoDAO extends MasterDAO{
 		Session s = getSession();
 		s.beginTransaction();
 		Query qr = s.createQuery("from Competicao c where c.nomeEvento like :p");
-		qr.setParameter("%"+nomeEvento+"%", "p");
+		qr.setParameter("p","%"+nomeEvento+"%");
 		List<Competicao> listaCompeticoes = qr.list();
 		s.close();
 		return listaCompeticoes;

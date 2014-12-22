@@ -13,5 +13,6 @@ public class GeraTabelas {
 		se.create(true, true);
 		session.getTransaction().commit();
 		session.close();
-	} 
+	}
 }
+
