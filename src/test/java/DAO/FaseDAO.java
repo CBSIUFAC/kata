@@ -20,11 +20,7 @@ public class FaseDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarFase(Fase fase){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(fase);
-		s.getTransaction().commit();
-		s.close();
+		atualizarObjeto(fase);
 	}
 	//deletar
 	public void deletarFase(Fase fase){

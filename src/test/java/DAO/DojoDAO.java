@@ -20,11 +20,7 @@ public class DojoDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarDojo(Dojo dojo){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(dojo);
-		s.getTransaction().commit();
-		s.close();
+		atualizarObjeto(dojo);
 	}
 	//deletar
 	public void deletarDojo(Dojo dojo){

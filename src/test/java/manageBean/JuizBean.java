@@ -28,14 +28,8 @@ public class JuizBean {
  		this.juiz = juiz;
  	}
  	
- 	private List<Juiz> listaJuiz=null;
+ 	private List<Juiz> listaJuiz;
  	
- 	public List<Juiz> getListaJuiz() {
-		return listaJuiz;
-	}
-	public void setListaJuiz(List<Juiz> listaJuiz) {
-		this.listaJuiz = listaJuiz;
-	}
 	public List<Juiz> getListaJuizes(){
  		if(listaJuiz == null)
  			listaJuiz = juizDAO.listarJuiz();

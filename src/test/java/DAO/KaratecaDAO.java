@@ -20,11 +20,7 @@ public class KaratecaDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarKarateca(Karateca karateca){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(karateca);
-		s.getTransaction().commit();
-		s.close();
+	     atualizarObjeto(karateca);
 	}
 	//deletar
 	public void deletarKarateca(Karateca karateca){

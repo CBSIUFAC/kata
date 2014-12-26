@@ -1,26 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/template/principal.xhtml">
+	<ui:define name="content">
 <h:head>
 	<title>Lista Juizes</title>
 </h:head>
-<ui:composition template="/template/principal.xhtml">
-	<ui:define name="content">
 <h:body>
- <p:dataTable var="d" value="#{juizBean.listaJuizes}" >
-					<p:column headerText="IdJuiz">
-						<p:outputLabel value="#{d.idJuiz}"></p:outputLabel>
+ <p:dataTable var="j" value="#{juizBean.listaJuizes}" >
+					<p:column headerText="ID">
+						<p:outputLabel value="#{j.idJuiz}"></p:outputLabel>
 					</p:column>
 
 					<p:column headerText="Nome" >
-								<p:outputLabel value="#{d.nome}"></p:outputLabel>
+								<p:outputLabel value="#{j.nome}"></p:outputLabel>
 					</p:column>
 				</p:dataTable>
 </h:body>
 	</ui:define>
 </ui:composition>
 </html>
-

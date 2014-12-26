@@ -20,11 +20,7 @@ public class ApresentacaoDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarApresentacao(Apresentacao apresentacao){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(apresentacao);
-		s.getTransaction().commit();
-		s.close();
+		atualizarObjeto(apresentacao);
 	}
 	//deletar
 	public void deletarApresentacao(Apresentacao apresentacao){

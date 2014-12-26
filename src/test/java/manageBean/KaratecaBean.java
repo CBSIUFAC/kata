@@ -25,7 +25,7 @@ public class KaratecaBean {
 		return karateca;
 	}
 
-	public void setJuiz(Karateca karateca) {
+	public void setKarateca(Karateca karateca) {
 		this.karateca = karateca;
 	}
 	

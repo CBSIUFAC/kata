@@ -20,11 +20,7 @@ public class CompeticaoDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarCompeticao(Competicao competicao){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(competicao);
-		s.getTransaction().commit();
-		s.close();
+		atualizarObjeto(competicao);
 	}
 	//deletar
 	public void deletarCompeticao(Competicao competicao){

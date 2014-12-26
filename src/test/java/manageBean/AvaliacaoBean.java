@@ -2,11 +2,16 @@ package manageBean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import DAO.AvaliacaoDAO;
 import entity.Avaliacao;
+import entity.Dojo;
 
 @ManagedBean(name="avaliacaoBean")
 @SessionScoped
@@ -25,7 +30,7 @@ public class AvaliacaoBean {
 		return avaliacao;
 	}
 
-	public void setJuiz(Avaliacao avaliacao) {
+	public void setAvaliacao(Avaliacao avaliacao) {
 		this.avaliacao = avaliacao;
 	}
 	
@@ -41,5 +46,14 @@ public class AvaliacaoBean {
 		avaliacaoDAO.deletarAvaliacao(avaliacao);
 		listaAvaliacao = null;
 		return "listaavaliacoes";
+	}
+	public void atualizarAvaliacao(RowEditEvent evento){
+		avaliacao = (Avaliacao)evento.getObject();
+		avaliacaoDAO.atualizarAvaliacao(avaliacao);
+	}
+	
+	public void cancelarAvaliacao(RowEditEvent evento){
+		FacesMessage msg = new FacesMessage("Edição Cancelada");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 }

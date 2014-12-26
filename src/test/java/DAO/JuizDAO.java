@@ -20,11 +20,7 @@ public class JuizDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarJuiz(Juiz juiz){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(juiz);
-		s.getTransaction().commit();
-		s.close();
+		atualizarObjeto(juiz);
 	}
 	//deletar
 	public void deletarJuiz(Juiz juiz){

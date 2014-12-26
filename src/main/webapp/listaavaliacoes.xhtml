@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+	<title>Lista de Avaliacoes</title>
+</h:head>
+<ui:composition template="/template/principal.xhtml">
+	<ui:define name="content">
+<h:body>
+            <h:form id="formAvaliacao">
+				<p:dialog widgetVar="dlgAvaliacao" modal="true">
+					<h:outputLabel value="Nome Avalicao:"></h:outputLabel>
+					<p:selectOneListbox id="basic" value="#{avaliacaoBean.avaliacao.idAvalia}">
+            
+          <f:selectItems value="#{dojoBean.listaDojos}" var="lista" itemLabel="#{lista.nomeDojo}" itemValue="#{lista.idDojo}" />
+            
+        </p:selectOneListbox>
+					<h:inputText id="desc" value="#{avaliacaoBean.avaliacao.nota}"></h:inputText>
+					<h:commandButton value="Inserir Nota"
+						action="#{avaliacaoBean.inserirAvaliacao}"></h:commandButton>
+				</p:dialog>
+			</h:form>
+			<h:form id="formListaAvaliacao">
+			<p:commandButton value="Inserir Avaliacoes"
+					onclick="PF('dlgAvaliacao').show()" update=":formAvaliacao:desc"
+					process="@this">
+					<p:resetInput target=":formAvaliacao:desc"></p:resetInput>
+				</p:commandButton>
+				<p:growl id="msg" showDetail="true"></p:growl>
+ <p:dataTable var="d" value="#{avaliacaoBean.listaAvaliacao}" editable="true">
+    <p:ajax event="rowEdit" listener="#{dojoBean.atualizarAvaliacao}"></p:ajax>
+    <p:ajax event="rowEditCancel" listener="#{dojoBean.cancelarAvaliacao}"
+						update=":formListaAvaliacao:msg"></p:ajax>
+					<p:column headerText="Id Avaliacao">
+						<p:outputLabel value="#{d.idAvalia}"></p:outputLabel>
+					</p:column>
+
+					<p:column headerText="Nota" >
+					<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{d.nota}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{d.nota}"></p:inputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Atualizar">
+						<p:rowEditor></p:rowEditor>
+					</p:column>
+				</p:dataTable>
+				
+				</h:form>
+				
+</h:body>
+	</ui:define>
+</ui:composition>
+</html>

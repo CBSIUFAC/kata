@@ -20,11 +20,7 @@ public class AvaliacaoDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarAvaliacao(Avaliacao avaliacao){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(avaliacao);
-		s.getTransaction().commit();
-		s.close();
+		atualizarObjeto(avaliacao);
 	}
 	//deletar
 	public void deletarAvaliacao(Avaliacao avaliacao){

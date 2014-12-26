@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-@Entity(name = "juiz")
-public class Juiz {//implements Serializable
+@Entity
+public class Juiz {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private int idJuiz;
@@ -27,7 +27,7 @@ public class Juiz {//implements Serializable
 		return idJuiz;
 	}
 	public void setIdJuiz(int idJuiz) {
-		idJuiz = idJuiz;
+		this.idJuiz = idJuiz;
 	}
 	public String getNome() {
 		return nome;

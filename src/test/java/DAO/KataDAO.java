@@ -20,11 +20,7 @@ public class KataDAO extends MasterDAO{
 	}
 	//atualizar
 	public void atualizarKata(Kata kata){
-		Session s = getSession();
-		s.beginTransaction();
-		s.update(kata);
-		s.getTransaction().commit();
-		s.close();
+		atualizarObjeto(kata);
 	}
 	//deletar
 	public void deletarKata(Kata kata){

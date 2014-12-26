@@ -30,11 +30,11 @@ public class Kata { //implements Serializable
 	public void setNomeKata(String nomeKata) {
 		this.nomeKata = nomeKata;
 	}
-	public int getPasos() {
+	public int getPassos() {
 		return passos;
 	}
-	public void setPasos(int pasos) {
-		this.passos = pasos;
+	public void setPassos(int passos) {
+		this.passos = passos;
 	}
 	
 }
