@@ -2,13 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
 <h:form>
 		<h:outputLabel value="RG:"></h:outputLabel>
 		<h:inputText value="#{karatecaBean.karateca.rgKarateca}"></h:inputText>
 		<h:outputLabel value="Nome Karateca:"></h:outputLabel>
 		<h:inputText value="#{karatecaBean.karateca.nome}"></h:inputText>
+		<h:outputLabel  value="Faixa :"></h:outputLabel>
+		<p:selectOneMenu id="karateca" value="#{karatecaBean.karateca.faixa}" >
+            <f:selectItem itemLabel="Selecione a Faixa" itemValue="" />
+            <f:selectItem itemLabel="Branca" itemValue="1" />
+            <f:selectItem itemLabel="Amarela" itemValue="2" />
+            <f:selectItem itemLabel="Vermelha" itemValue="3" />
+        </p:selectOneMenu>
+        <h:outputLabel  value="Sexo: :"></h:outputLabel>
+		<p:selectOneMenu id="sexo" value="#{karatecaBean.karateca.sexo}" >
+            <f:selectItem itemLabel="Selecione o Genero" itemValue="" />
+            <f:selectItem itemLabel="Masculino" itemValue="M" />
+            <f:selectItem itemLabel="Feminino" itemValue="F" />
+        </p:selectOneMenu>
+        <h:outputLabel  value="Dojo:"></h:outputLabel>
+        <p:selectOneListbox id="dojos" value="#{karatecaBean.karateca.dojo}">
+            
+          <f:selectItems value="#{dojoBean.listaDojos}" var="lista" itemLabel="#{lista.nomeDojo}" itemValue="#{lista.dojo}" />
+            
+        </p:selectOneListbox>
 		<h:commandButton value="Inserir K" action="#{karatecaBean.inserirKarateca}"></h:commandButton>
 	</h:form>
 </h:body>
