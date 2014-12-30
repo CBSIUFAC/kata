@@ -30,7 +30,7 @@ public class Competicao {//implements Serializable
 		this.fase = fase;
 	}
 	@Column
-    private Date data;
+    private String data;
 	@OneToMany(mappedBy="competicao")
 	  private List<Fase> fase;
 	public String getNomeEvento() {
@@ -45,10 +45,10 @@ public class Competicao {//implements Serializable
 	public void setOrganizador(String organizador) {
 		this.organizador = organizador;
 	}
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 }
