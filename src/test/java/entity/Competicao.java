@@ -1,4 +1,6 @@
 package entity;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -45,10 +47,13 @@ public class Competicao {//implements Serializable
 	public void setOrganizador(String organizador) {
 		this.organizador = organizador;
 	}
-	public Date getData() {
-		return data;
+	public String getData() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		return sdf.format(data);
 	}
-	public void setData(Date data) {
-		this.data = data;
+	public void setData(String data2) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		this.data = sdf.parse(data2);
+		
 	}
 }

@@ -1,13 +1,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,9 +24,9 @@ public class Karateca implements Serializable{
    @Column
    private char sexo;
    @Column
-   private int faixa;
+   private String faixa;
    @Column
-   private int categoria;
+   private String categoria;
    @ManyToOne
 	@JoinColumn(referencedColumnName="idDojo",name="fkDojo")
 	private Dojo dojo;
@@ -42,16 +42,20 @@ public void setRgKarateca(String rgKarateca) {
 	this.rgKarateca = rgKarateca;
 }
 public String getNome() {
+	
 	return nome;
 }
 public void setNome(String nome) {
 	this.nome = nome;
 }
-public Date getDataNasc() {
-	return dataNasc;
+public String getDataNasc(){  
+	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    
+	return sdf.format(dataNasc);
 }
-public void setDataNasc(Date dataNasc) {
-	this.dataNasc = dataNasc;
+public void setDataNasc(String dataNasci) throws ParseException {  
+	SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+	this.dataNasc = sdf.parse(dataNasci);
 }
 public char getSexo() {
 	return sexo;
@@ -59,16 +63,16 @@ public char getSexo() {
 public void setSexo(char sexo) {
 	this.sexo = sexo;
 }
-public int getFaixa() {
+public String getFaixa() {
 	return faixa;
 }
-public void setFaixa(int faixa) {
+public void setFaixa(String faixa) {
 	this.faixa = faixa;
 }
-public int getCategoria() {
+public String getCategoria() {
 	return categoria;
 }
-public void setCategoria(int categoria) {
+public void setCategoria(String categoria) {
 	this.categoria = categoria;
 }
 public Dojo getDojo() {
