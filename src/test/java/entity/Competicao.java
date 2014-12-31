@@ -1,4 +1,6 @@
 package entity;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class Competicao {//implements Serializable
 		this.fase = fase;
 	}
 	@Column
-    private String data;
+    private Date data;
 	@OneToMany(mappedBy="competicao")
 	  private List<Fase> fase;
 	public String getNomeEvento() {
@@ -46,9 +48,12 @@ public class Competicao {//implements Serializable
 		this.organizador = organizador;
 	}
 	public String getData() {
-		return data;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		return sdf.format(data);
 	}
-	public void setData(String data) {
-		this.data = data;
+	public void setData(String data2) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+		this.data = sdf.parse(data2);
+		
 	}
 }
