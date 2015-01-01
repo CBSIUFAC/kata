@@ -18,11 +18,17 @@ public class Kata { //implements Serializable
     private int passos;
 	@OneToMany(mappedBy="kata")
 	  private List<Apresentacao> apresentacao;
-	public int getKata() {
+	public int getIdKata() {
 		return idKata;
 	}
-	public void setKata(int kata) {
-		this.idKata = kata;
+	public void setIdKata(int idKata) {
+		this.idKata = idKata;
+	}
+	public List<Apresentacao> getApresentacao() {
+		return apresentacao;
+	}
+	public void setApresentacao(List<Apresentacao> apresentacao) {
+		this.apresentacao = apresentacao;
 	}
 	public String getNomeKata() {
 		return nomeKata;

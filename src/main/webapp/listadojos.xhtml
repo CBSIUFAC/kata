@@ -35,7 +35,7 @@
 					</p:column>
 
 					<p:column headerText="Nome" >
-					<p:cellEditor>
+					 <p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{d.nomeDojo}"></p:outputLabel>
 							</f:facet>
@@ -46,6 +46,13 @@
 					</p:column>
 					<p:column headerText="Atualizar">
 						<p:rowEditor></p:rowEditor>
+					</p:column>
+					<p:column headerText="Deletar">
+						<h:commandLink action="#{dojoBean.deletarDojo}">
+							<p:graphicImage value="/imagens/update.png" style="border:0"></p:graphicImage>
+							<f:setPropertyActionListener value="#{d}"
+								target="#{dojoBean.dojo}"></f:setPropertyActionListener>
+						</h:commandLink>
 					</p:column>
 				</p:dataTable>
 				</h:form>

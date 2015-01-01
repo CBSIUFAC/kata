@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Lista de Competições</title>
+</h:head>
+<ui:composition template="/template/principal.xhtml">
+	<ui:define name="content">
+<h:body>
+<p:button outcome="competicoes" value="Inserir Competição">
+    <f:param name="competicao" value="10" />
+</p:button>
+    <h:form id="tbCompeticoes">
+       <p:growl id="msg" showDetail="true"></p:growl>
+           <p:dataTable var="C" value="#{competicaoBean.listaCompeticoes}" rows="5"
+					editable="true" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" filteredValue="#{competicaoBean.filtroLista}">
+					<p:ajax event="rowEdit" listener="#{competicaoBean.atualizarCompeticao}"></p:ajax>
+					<p:ajax event="rowEditCancel" listener="#{competicaoBean.cancelarCompeticao}" update=":tbCompeticoes:msg"></p:ajax>
+					<p:column headerText="Id Evento" filterBy="#{C.idEvento}" filterMatchMode="contains">
+						<p:outputLabel value="#{C.idEvento}"></p:outputLabel>
+					</p:column>
+
+					<p:column headerText="Nome Competição" filterBy="#{C.nomeEvento}" filterMatchMode="contains" >
+					    <p:cellEditor>
+					        <f:facet name="output">
+								<p:outputLabel value="#{C.nomeEvento}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+							  <p:inputText value="#{C.nomeEvento}"></p:inputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Organizador" filterBy="#{C.organizador}" filterMatchMode="contains" >
+					    <p:cellEditor>
+					        <f:facet name="output">
+								<p:outputLabel value="#{C.organizador}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+							  <p:inputText value="#{C.organizador}"></p:inputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Atualizar">
+						<p:rowEditor></p:rowEditor>
+					</p:column>
+					<p:column headerText="Deletar">
+						<h:commandLink action="#{competicaoBean.deletarCompeticao}">
+							<p:graphicImage value="/imagens/update.png" style="border:0"></p:graphicImage>
+							<f:setPropertyActionListener value="#{C}"
+								target="#{competicaoBean.competicao}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+	</h:form>
+</h:body>
+	</ui:define>
+</ui:composition>
+</html>

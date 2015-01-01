@@ -6,12 +6,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
 import org.primefaces.event.RowEditEvent;
-
 import DAO.AvaliacaoDAO;
 import entity.Avaliacao;
-import entity.Dojo;
 
 @ManagedBean(name="avaliacaoBean")
 @SessionScoped
@@ -34,8 +31,15 @@ public class AvaliacaoBean {
 		this.avaliacao = avaliacao;
 	}
 	
-	private List<Avaliacao> listaAvaliacao;
+	private List<Avaliacao> listaAvaliacao=null;
+	private List<Avaliacao> filtroLista=null;
 	
+	public List<Avaliacao> getFiltroLista() {
+		return filtroLista;
+	}
+	public void setFiltroLista(List<Avaliacao> filtroLista) {
+		this.filtroLista = filtroLista;
+	}
 	public List<Avaliacao> getListaAvaliacao(){
 		if(listaAvaliacao == null)
 			listaAvaliacao = avaliacaoDAO.listarAvaliacao();

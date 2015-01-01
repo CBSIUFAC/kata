@@ -6,33 +6,33 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>Lista de Juizes</title>
+	<title>Lista de Apresentações</title>
 </h:head>
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="juizes" value="Inserir Juiz">
-    <f:param name="juiz" value="10" />
+<p:button outcome="apresentacoes" value="Inserir Apresentações">
+    <f:param name="apresentacao" value="10" />
 </p:button>
-    <h:form id="tbJuizes">
+    <h:form id="tbApresentacoes">
        <p:growl id="msg" showDetail="true"></p:growl>
-           <p:dataTable var="J" value="#{juizBean.listaJuizes}" rows="5"
+           <p:dataTable var="A" value="#{apresentacaoBean.listaApresentacoes}" rows="5"
 					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15" filteredValue="#{juizBean.filtroLista}">
-					<p:ajax event="rowEdit" listener="#{juizBean.atualizarJuiz}"></p:ajax>
-					<p:ajax event="rowEditCancel" listener="#{juizBean.cancelarJuiz}" update=":tbJuizes:msg"></p:ajax>
-					<p:column headerText="RG Karateca" filterBy="#{J.idJuiz}" filterMatchMode="contains">
-						<p:outputLabel value="#{J.idJuiz}"></p:outputLabel>
+					rowsPerPageTemplate="5,10,15" filteredValue="#{apresentacaoBean.filtroLista}">
+					<p:ajax event="rowEdit" listener="#{apresentacaoBean.atualizarApresentacao}"></p:ajax>
+					<p:ajax event="rowEditCancel" listener="#{apresentacaoBean.cancelarApresentacao}" update=":tbApresentacoes:msg"></p:ajax>
+					<p:column headerText="Numero da Apresentacao" filterBy="#{A.idApresenta}" filterMatchMode="contains">
+						<p:outputLabel value="#{A.idApresenta}"></p:outputLabel>
 					</p:column>
 
-					<p:column headerText="Nome Juiz" filterBy="#{J.nome}" filterMatchMode="contains" >
+					<p:column headerText="Pontuação" filterBy="#{A.pontuacao}" filterMatchMode="contains" >
 					    <p:cellEditor>
 					        <f:facet name="output">
-								<p:outputLabel value="#{J.nome}"></p:outputLabel>
+								<p:outputLabel value="#{A.pontuacao}"></p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
-							  <p:inputText value="#{J.nome}"></p:inputText>
+							  <p:inputText value="#{A.pontuacao}"></p:inputText>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -40,10 +40,10 @@
 						<p:rowEditor></p:rowEditor>
 					</p:column>
 					<p:column headerText="Deletar">
-						<h:commandLink action="#{juizBean.deletarJuiz}">
+						<h:commandLink action="#{apresentacaoBean.deletarApresentacao}">
 							<p:graphicImage value="/imagens/update.png" style="border:0"></p:graphicImage>
-							<f:setPropertyActionListener value="#{J}"
-								target="#{juizBean.juiz}"></f:setPropertyActionListener>
+							<f:setPropertyActionListener value="#{A}"
+								target="#{apresentacaoBean.apresentacao}"></f:setPropertyActionListener>
 						</h:commandLink>
 					</p:column>
 				</p:dataTable>
@@ -52,3 +52,4 @@
 	</ui:define>
 </ui:composition>
 </html>
+

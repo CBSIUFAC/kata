@@ -6,33 +6,33 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>Lista de Juizes</title>
+	<title>Lista de Fases</title>
 </h:head>
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="juizes" value="Inserir Juiz">
-    <f:param name="juiz" value="10" />
+<p:button outcome="fases" value="Inserir Fases">
+    <f:param name="fase" value="10" />
 </p:button>
-    <h:form id="tbJuizes">
+    <h:form id="tbFases">
        <p:growl id="msg" showDetail="true"></p:growl>
-           <p:dataTable var="J" value="#{juizBean.listaJuizes}" rows="5"
+           <p:dataTable var="F" value="#{faseBean.listaFases}" rows="5"
 					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15" filteredValue="#{juizBean.filtroLista}">
-					<p:ajax event="rowEdit" listener="#{juizBean.atualizarJuiz}"></p:ajax>
-					<p:ajax event="rowEditCancel" listener="#{juizBean.cancelarJuiz}" update=":tbJuizes:msg"></p:ajax>
-					<p:column headerText="RG Karateca" filterBy="#{J.idJuiz}" filterMatchMode="contains">
-						<p:outputLabel value="#{J.idJuiz}"></p:outputLabel>
+					rowsPerPageTemplate="5,10,15" filteredValue="#{faseBean.filtroLista}">
+					<p:ajax event="rowEdit" listener="#{faseBean.atualizarFase}"></p:ajax>
+					<p:ajax event="rowEditCancel" listener="#{faseBean.cancelarFase}" update=":tbFases:msg"></p:ajax>
+					<p:column headerText="Fase" filterBy="#{F.idFase}" filterMatchMode="contains">
+						<p:outputLabel value="#{F.idFase}"></p:outputLabel>
 					</p:column>
 
-					<p:column headerText="Nome Juiz" filterBy="#{J.nome}" filterMatchMode="contains" >
+					<p:column headerText="Tipo de Fase" filterBy="#{F.fase}" filterMatchMode="contains" >
 					    <p:cellEditor>
 					        <f:facet name="output">
-								<p:outputLabel value="#{J.nome}"></p:outputLabel>
+								<p:outputLabel value="#{F.fase}"></p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
-							  <p:inputText value="#{J.nome}"></p:inputText>
+							  <p:inputText value="#{F.fase}"></p:inputText>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -40,10 +40,10 @@
 						<p:rowEditor></p:rowEditor>
 					</p:column>
 					<p:column headerText="Deletar">
-						<h:commandLink action="#{juizBean.deletarJuiz}">
+						<h:commandLink action="#{faseBean.deletarFase}">
 							<p:graphicImage value="/imagens/update.png" style="border:0"></p:graphicImage>
-							<f:setPropertyActionListener value="#{J}"
-								target="#{juizBean.juiz}"></f:setPropertyActionListener>
+							<f:setPropertyActionListener value="#{F}"
+								target="#{faseBean.fase}"></f:setPropertyActionListener>
 						</h:commandLink>
 					</p:column>
 				</p:dataTable>

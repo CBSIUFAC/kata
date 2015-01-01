@@ -2,8 +2,12 @@ package manageBean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import DAO.JuizDAO;
 import entity.Juiz;
@@ -28,8 +32,15 @@ public class JuizBean {
  		this.juiz = juiz;
  	}
  	
- 	private List<Juiz> listaJuiz;
+ 	private List<Juiz> listaJuiz=null;
+ 	private List<Juiz> filtroLista=null;
  	
+	public List<Juiz> getFiltroLista() {
+		return filtroLista;
+	}
+	public void setFiltroLista(List<Juiz> filtroLista) {
+		this.filtroLista = filtroLista;
+	}
 	public List<Juiz> getListaJuizes(){
  		if(listaJuiz == null)
  			listaJuiz = juizDAO.listarJuiz();
@@ -41,4 +52,13 @@ public class JuizBean {
  		listaJuiz = null;
  		return "listajuizes";
  	}
+ 	public void atualizarJuiz(RowEditEvent evento){
+		juiz = (Juiz)evento.getObject();
+		juizDAO.atualizarJuiz(juiz);
+	}
+	
+	public void cancelarJuiz(RowEditEvent evento){
+		FacesMessage msg = new FacesMessage("Edição Cancelada");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 }
