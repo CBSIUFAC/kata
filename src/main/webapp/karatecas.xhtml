@@ -12,8 +12,14 @@
      <h:panelGrid columns="2" cellpadding="5">
 		<h:outputLabel value="RG:"></h:outputLabel>
 		<h:inputText value="#{karatecaBean.karateca.rgKarateca}"></h:inputText>
-		<h:outputLabel value="Nome Karateca:"></h:outputLabel>
+		<h:outputLabel value="Nome :"></h:outputLabel>
 		<h:inputText value="#{karatecaBean.karateca.nome}"></h:inputText>
+		<p:outputLabel value="Data de Nascimento :" />
+    <p:inputMask id="data" mask="99/99/9999" placeholder="Dia/Mês/Ano"
+     value="#{karatecaBean.karateca.dataNasc}">
+
+       <f:converter converterId="javax.faces.DateTime" />
+   </p:inputMask>
 		<h:outputLabel  value="Sexo: :"></h:outputLabel>
 		<p:selectOneMenu id="sexo" value="#{karatecaBean.karateca.sexo}" >
             <f:selectItem itemLabel="Selecione o Genero" itemValue="" />

@@ -21,7 +21,15 @@ public class Karateca implements Serializable{
    private String nome;
    @Column
    private Date dataNasc;
-   @Column
+ 
+
+public Date getDataNasc() {
+	return dataNasc;
+}
+public void setDataNasc(Date dataNasc) {
+	this.dataNasc = dataNasc;
+}
+@Column
    private char sexo;
    @Column
    private String faixa;
@@ -47,15 +55,6 @@ public String getNome() {
 }
 public void setNome(String nome) {
 	this.nome = nome;
-}
-public String getDataNasc(){  
-	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    
-	return sdf.format(dataNasc);
-}
-public void setDataNasc(String dataNasci) throws ParseException {  
-	SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
-	this.dataNasc = sdf.parse(dataNasci);
 }
 public char getSexo() {
 	return sexo;

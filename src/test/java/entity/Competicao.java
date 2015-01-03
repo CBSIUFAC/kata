@@ -47,13 +47,11 @@ public class Competicao {//implements Serializable
 	public void setOrganizador(String organizador) {
 		this.organizador = organizador;
 	}
-	public String getData() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		return sdf.format(data);
+	public Date getData() {
+		return data;
 	}
-	public void setData(String data2) throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
-		this.data = sdf.parse(data2);
-		
+	public void setData(Date data) {
+		this.data = data;
 	}
+	
 }

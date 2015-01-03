@@ -17,9 +17,8 @@ public class TestaCompeticao {
 		c.setIdEvento(01);
 		c.setData(null);
 		c.setFase(null);
-		k.setRgKarateca("1014");
-		k.setDataNasc("25092014");
-		k.setNome("gabriel");
+		k.setRgKarateca("arrs");
+		k.setNome("iasds");
 		CompeticaoDAO competicaoDAO = new CompeticaoDAO();
 		competicaoDAO.inserirObjeto(c);
 		KaratecaDAO karatecaDAO = new KaratecaDAO();
