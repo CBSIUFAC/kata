@@ -2,14 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+	  <ui:composition template="/template/principal.xhtml">
+	<ui:define name="content">
 <h:body>
 <h:form>
+<h:panelGrid columns="2" cellpadding="5">
 		<h:outputLabel value="Descrição:"></h:outputLabel>
 		<h:inputText value="#{competicaoBean.competicao.nomeEvento}"></h:inputText>
 		<h:outputLabel value="Organizador:"></h:outputLabel>
 		<h:inputText value="#{competicaoBean.competicao.organizador}"></h:inputText>
+		<p:outputLabel value="Data da Competição :" />
+    <p:inputMask id="data" mask="99/99/9999" placeholder="Dia/Mês/Ano"
+     value="#{competicaoBean.competicao.data}">
+
+       <f:converter converterId="javax.faces.DateTime" />
+   </p:inputMask>
+   </h:panelGrid>
 		<h:commandButton value="Inserir Competicao" action="#{competicaoBean.inserirCompeticao}"></h:commandButton>
-	</h:form>
+	
+</h:form>
 </h:body>
+</ui:define>
+</ui:composition>
 </html>
