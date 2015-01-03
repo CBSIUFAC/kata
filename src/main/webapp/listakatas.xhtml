@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Lista de Katas</title>
+</h:head>
+<ui:composition template="/template/principal.xhtml">
+	<ui:define name="content">
+<h:body>
+<p:button outcome="katas" value="Inserir Kata">
+    <f:param name="kata" value="10" />
+</p:button>
+    <h:form id="tbKatas">
+       <p:growl id="msg" showDetail="true"></p:growl>
+           <p:dataTable var="K" value="#{kataBean.listaKatas}" rows="5"
+					editable="true" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" filteredValue="#{kataBean.filtroLista}">
+					<p:ajax event="rowEdit" listener="#{kataBean.atualizarKata}"></p:ajax>
+					<p:ajax event="rowEditCancel" listener="#{kataBean.cancelarKata}" update=":tbKatas:msg"></p:ajax>
+					<p:column headerText="Id Kata" filterBy="#{K.idKata}" filterMatchMode="contains">
+						<p:outputLabel value="#{K.idKata}"></p:outputLabel>
+					</p:column>
+
+					<p:column headerText="Nome Kata" filterBy="#{K.nomeKata}" filterMatchMode="contains" >
+					    <p:cellEditor>
+					        <f:facet name="output">
+								<p:outputLabel value="#{K.nomeKata}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+							  <p:inputText value="#{K.nomeKata}"></p:inputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Passos" filterBy="#{K.passos}" filterMatchMode="contains" >
+					    <p:cellEditor>
+					        <f:facet name="output">
+								<p:outputLabel value="#{K.passos}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+							  <p:inputText value="#{K.passos}"></p:inputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Atualizar">
+						<p:rowEditor></p:rowEditor>
+					</p:column>
+					<p:column headerText="Deletar">
+						<h:commandLink action="#{kataBean.deletarKata}">
+							<p:graphicImage value="/imagens/update.png" style="border:0"></p:graphicImage>
+							<f:setPropertyActionListener value="#{K}"
+								target="#{kataBean.kata}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+	</h:form>
+</h:body>
+	</ui:define>
+</ui:composition>
+</html>

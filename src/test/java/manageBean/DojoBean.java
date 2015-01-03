@@ -32,8 +32,15 @@ public class DojoBean {
 		this.dojo = dojo;
 	}
 	
-	private List<Dojo> listaDojo;
+	private List<Dojo> listaDojo=null;
+	private List<Dojo> filtroLista=null;
 	
+	public List<Dojo> getFiltroLista() {
+		return filtroLista;
+	}
+	public void setFiltroLista(List<Dojo> filtroLista) {
+		this.filtroLista = filtroLista;
+	}
 	public List<Dojo> getListaDojos(){
 		if(listaDojo == null)
 			listaDojo = dojoDAO.listarDojo();

@@ -2,8 +2,12 @@ package manageBean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import DAO.KataDAO;
 import entity.Kata;
@@ -28,7 +32,15 @@ public class KataBean {
  		this.kata = kata;
  	}
  	
- 	private List<Kata> listaKata;
+ 	private List<Kata> listaKata=null;
+ 	public List<Kata> getFiltroLista() {
+		return filtroLista;
+	}
+	public void setFiltroLista(List<Kata> filtroLista) {
+		this.filtroLista = filtroLista;
+	}
+
+	private List<Kata> filtroLista=null;
  	
  	public List<Kata> getListaKatas(){
  		if(listaKata == null)
@@ -41,4 +53,13 @@ public class KataBean {
  		listaKata = null;
  		return "listakatas";
  	}
+ 	public void atualizarKata(RowEditEvent evento){
+		kata = (Kata)evento.getObject();
+		kataDAO.atualizarKata(kata);
+	}
+	
+	public void cancelarKata(RowEditEvent evento){
+		FacesMessage msg = new FacesMessage("Edição Cancelada");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 }

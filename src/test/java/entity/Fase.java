@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-@Entity(name = "fase")
+@Entity
 public class Fase {//implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

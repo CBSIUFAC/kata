@@ -2,8 +2,12 @@ package manageBean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import DAO.FaseDAO;
 import entity.Fase;
@@ -28,7 +32,15 @@ public class FaseBean {
 		this.fase = fase;
 	}
 	
-	private List<Fase> listaFase;
+	private List<Fase> listaFase=null;
+	public List<Fase> getFiltroLista() {
+		return filtroLista;
+	}
+	public void setFiltroLista(List<Fase> filtroLista) {
+		this.filtroLista = filtroLista;
+	}
+
+	private List<Fase> filtroLista=null;
 	
 	public List<Fase> getListaFases(){
 		if(listaFase == null)
@@ -41,5 +53,13 @@ public class FaseBean {
 		listaFase = null;
 		return "listafases";
 	}
-
+	public void atualizarFase(RowEditEvent evento){
+		fase = (Fase)evento.getObject();
+		faseDAO.atualizarFase(fase);
+	}
+	
+	public void cancelarFase(RowEditEvent evento){
+		FacesMessage msg = new FacesMessage("Edição Cancelada");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 }
