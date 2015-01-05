@@ -15,11 +15,7 @@
 		<h:outputLabel value="Organizador:"></h:outputLabel>
 		<h:inputText value="#{competicaoBean.competicao.organizador}"></h:inputText>
 		<p:outputLabel value="Data da Competição :" />
-    <p:inputMask id="data" mask="99/99/9999" placeholder="Dia/Mês/Ano"
-     value="#{competicaoBean.competicao.data}">
-
-       <f:converter converterId="javax.faces.DateTime" />
-   </p:inputMask>
+        <p:calendar id="mask" value="#{competicaoBean.competicao.data}" pattern="dd-MM-yyyy" mask="true" />
    </h:panelGrid>
 		<h:commandButton value="Inserir Competicao" action="#{competicaoBean.inserirCompeticao}"></h:commandButton>
 	

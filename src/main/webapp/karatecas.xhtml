@@ -14,15 +14,12 @@
 		<h:inputText value="#{karatecaBean.karateca.rgKarateca}"></h:inputText>
 		<h:outputLabel value="Nome :"></h:outputLabel>
 		<h:inputText value="#{karatecaBean.karateca.nome}"></h:inputText>
-		<p:outputLabel value="Data de Nascimento :" />
-    <p:inputMask id="data" mask="99/99/9999" placeholder="Dia/Mês/Ano"
-     value="#{karatecaBean.karateca.dataNasc}">
-
-       <f:converter converterId="javax.faces.DateTime" />
-   </p:inputMask>
+		
+		<h:outputLabel  value="Data Nascimento:" />
+        <p:calendar id="german" value="#{karatecaBean.karateca.dataNasc}" locale="pt_BR" navigator="true" pattern="dd-MM-yyyy" required="true"/>
 		<h:outputLabel  value="Sexo: :"></h:outputLabel>
-		<p:selectOneMenu id="sexo" value="#{karatecaBean.karateca.sexo}" >
-            <f:selectItem itemLabel="Selecione o Genero" itemValue="" />
+		<p:selectOneMenu id="sexo" value="#{karatecaBean.karateca.sexo}" required="M">
+		    <f:selectItem itemLabel="Selecione o Genero" itemValue=""/>
             <f:selectItem itemLabel="Masculino" itemValue="M" />
             <f:selectItem itemLabel="Feminino" itemValue="F" />
         </p:selectOneMenu>
@@ -41,7 +38,7 @@
         <h:outputLabel  value="Categoria: :"></h:outputLabel>
 		<p:selectOneMenu id="categoria" value="#{karatecaBean.karateca.categoria}" >
             <f:selectItem itemLabel="Selecione o Categoria" itemValue="" />
-            <f:selectItem itemLabel="Junior" itemValue="Junior" />
+            <f:selectItem itemLabel="Criança" itemValue="Junior" />
             <f:selectItem itemLabel="Jovem" itemValue="Jovem" />
             <f:selectItem itemLabel="Adulto" itemValue="Adulto" />
         </p:selectOneMenu>

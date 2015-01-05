@@ -16,7 +16,7 @@
 </p:button>
     <h:form id="tbKaratecas">
        <p:growl id="msg" showDetail="true"></p:growl>
-           <p:dataTable var="k" value="#{karatecaBean.listaKaratecas}" rows="5"
+           <p:dataTable var="k" value="#{karatecaBean.listaKaratecas}" rows="15"
 					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" filteredValue="#{karatecaBean.filtroLista}">
@@ -66,7 +66,7 @@
 					</p:column>
 					<p:column headerText="Deletar">
 						<h:commandLink action="#{karatecaBean.deletarKarateca}">
-							<p:graphicImage value="/imagens/update.png" style="border:0"></p:graphicImage>
+							<p:graphicImage value="/imagens/delete.png" style="border:0"></p:graphicImage>
 							<f:setPropertyActionListener value="#{k}"
 								target="#{karatecaBean.karateca}"></f:setPropertyActionListener>
 						</h:commandLink>
