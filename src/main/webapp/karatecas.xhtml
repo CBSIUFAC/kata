@@ -23,6 +23,10 @@
             <f:selectItem itemLabel="Masculino" itemValue="M" />
             <f:selectItem itemLabel="Feminino" itemValue="F" />
         </p:selectOneMenu>
+        <h:outputLabel  value="Dojo: :"></h:outputLabel>
+        <p:selectOneMenu value="#{karatecaBean.karateca.dojo}" converter="dojoConverter">
+		    <f:selectItems value="#{dojoBean.listaDojos}" var="doj" itemLabel="#{doj.nomeDojo}" itemValue="#{doj}"></f:selectItems>
+		</p:selectOneMenu>
 		<h:outputLabel value="Faixa :"></h:outputLabel>
 		<p:selectOneMenu id="karateca" value="#{karatecaBean.karateca.faixa}" >
             <f:selectItem itemLabel="Selecione a Faixa" itemValue="" />
