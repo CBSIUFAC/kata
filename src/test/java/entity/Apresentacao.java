@@ -9,13 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
-public class Apresentacao{ //implements Serializable
+public class Apresentacao{
 	@Id
     private int idApresenta;
 	@Column
     private float pontuacao;
     @ManyToOne
-	@JoinColumn(referencedColumnName="rgKarateca",name="fKarateca")
+	@JoinColumn(referencedColumnName="cpf",name="fKCpf")
 	private Karateca karateca;
     @ManyToOne
 	@JoinColumn(referencedColumnName="idKata",name="fKata")
@@ -60,6 +60,26 @@ public class Apresentacao{ //implements Serializable
 	}
 	public void setAvaliacao(List<Avaliacao> avaliacao) {
 		this.avaliacao = avaliacao;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idApresenta;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Apresentacao other = (Apresentacao) obj;
+		if (idApresenta != other.idApresenta)
+			return false;
+		return true;
 	}
     
 }

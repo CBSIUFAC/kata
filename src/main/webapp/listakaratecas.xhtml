@@ -22,8 +22,8 @@
 					rowsPerPageTemplate="5,10,15" filteredValue="#{karatecaBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{karatecaBean.atualizarKarateca}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{karatecaBean.cancelarKarateca}" update=":tbKaratecas:msg"></p:ajax>
-					<p:column headerText="RG Karateca" filterBy="#{k.rgKarateca}" filterMatchMode="contains">
-						<p:outputLabel value="#{k.rgKarateca}"></p:outputLabel>
+					<p:column headerText="CPF" filterBy="#{k.cpf}" filterMatchMode="contains">
+						<p:outputLabel value="#{k.cpf}"></p:outputLabel>
 					</p:column>
 
 					<p:column headerText="Nome" filterBy="#{k.nome}" filterMatchMode="contains" >
@@ -38,6 +38,9 @@
 					</p:column>
 					<p:column headerText="Sexo" >
 								<p:outputLabel value="#{k.sexo}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Data de Nascimento" >
+						<p:outputLabel value="#{k.dataNasc}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Faixa" >
 							<p:cellEditor>

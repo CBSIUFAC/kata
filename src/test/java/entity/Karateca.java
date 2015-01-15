@@ -15,70 +15,91 @@ import javax.persistence.OneToMany;
 @Entity
 public class Karateca implements Serializable{
    @Id
-   //@GeneratedValue(strategy=GenerationType.AUTO)
-   private String rgKarateca;
+   private String cpf;
    @Column(nullable=false)
    private String nome;
    @Column
    private Date dataNasc;
- 
-
-public Date getDataNasc() {
-	return dataNasc;
-}
-public void setDataNasc(Date dataNasc) {
-	this.dataNasc = dataNasc;
-}
-@Column
+   @Column
    private char sexo;
    @Column
    private String faixa;
    @Column
    private String categoria;
    @ManyToOne
-	@JoinColumn(referencedColumnName="idDojo",name="fkDojo")
-	private Dojo dojo;
+   @JoinColumn(referencedColumnName="idDojo",name="fkDojo")
+   private Dojo dojo;
    @OneToMany(mappedBy="karateca")
    private List<Apresentacao> apresentacao;
    public List<Apresentacao> getApresentacao() {
 		return apresentacao;
 	}
-public String getRgKarateca() {
-	return rgKarateca;
-}
-public void setRgKarateca(String rgKarateca) {
-	this.rgKarateca = rgKarateca;
-}
-public String getNome() {
-	
+  public String getCpf() {
+	return cpf;
+  }
+  public void setCpf(String cpf) {
+	this.cpf = cpf;
+  }
+  public String getNome() {
 	return nome;
-}
-public void setNome(String nome) {
+  }
+  public void setNome(String nome) {
 	this.nome = nome;
-}
-public char getSexo() {
+  }
+  public Date getDataNasc() {
+	return dataNasc;
+  }
+  public void setDataNasc(Date dataNasc) {
+	this.dataNasc = dataNasc;
+  }
+  public char getSexo() {
 	return sexo;
-}
-public void setSexo(char sexo) {
+  }
+  public void setSexo(char sexo) {
 	this.sexo = sexo;
-}
-public String getFaixa() {
+  }
+  public String getFaixa() {
 	return faixa;
-}
-public void setFaixa(String faixa) {
+  }
+  public void setFaixa(String faixa) {
 	this.faixa = faixa;
-}
-public String getCategoria() {
+  }
+  public String getCategoria() {
 	return categoria;
-}
-public void setCategoria(String categoria) {
+  }
+  public void setCategoria(String categoria) {
 	this.categoria = categoria;
-}
-public Dojo getDojo() {
-	return dojo;
-}
-public void setDojo(Dojo dojo) {
+  }
+  public Dojo getDojo() {
+ 	return dojo;
+  }
+  public void setDojo(Dojo dojo) {
 	this.dojo = dojo;
-}
-   
+  }
+  public void setApresentacao(List<Apresentacao> apresentacao) {
+	this.apresentacao = apresentacao;
+  }
+  @Override
+  public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+	return result;
+  }
+  @Override
+  public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Karateca other = (Karateca) obj;
+	if (cpf == null) {
+		if (other.cpf != null)
+			return false;
+	} else if (!cpf.equals(other.cpf))
+		return false;
+	return true;
+  }  
 }

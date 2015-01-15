@@ -24,15 +24,34 @@ public class Dojo implements Serializable {
 	}
    public int getIdDojo() {
 	return idDojo;
-}
-public void setIdDojo(int idDojo) {
+   }
+   public void setIdDojo(int idDojo) {
 	this.idDojo = idDojo;
-}
-public String getNomeDojo() {
+   }
+   public String getNomeDojo() {
 	return nomeDojo;
-}
-public void setNomeDojo(String nomeDojo) {
+   }
+   public void setNomeDojo(String nomeDojo) {
 	this.nomeDojo = nomeDojo;
+   }
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + idDojo;
+	return result;
 }
-
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Dojo other = (Dojo) obj;
+	if (idDojo != other.idDojo)
+		return false;
+	return true;
+}
 }

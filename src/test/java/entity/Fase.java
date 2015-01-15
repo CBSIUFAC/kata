@@ -33,4 +33,25 @@ public class Fase {//implements Serializable
 	public void setFase(String fase) {
 		this.fase = fase;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idFase;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Fase other = (Fase) obj;
+		if (idFase != other.idFase)
+			return false;
+		return true;
+	}
+	
 }

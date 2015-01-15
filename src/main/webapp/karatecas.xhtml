@@ -10,8 +10,10 @@
 <h:body>
 <h:form>
      <h:panelGrid columns="2" cellpadding="5">
-		<h:outputLabel value="RG:"></h:outputLabel>
-		<h:inputText value="#{karatecaBean.karateca.rgKarateca}"></h:inputText>
+		<h:outputLabel value="CPF:"></h:outputLabel>
+		<h:inputText value="#{karatecaBean.karateca.cpf}">
+		<f:validator validatorId="cpf"></f:validator>
+		</h:inputText>
 		<h:outputLabel value="Nome :"></h:outputLabel>
 		<h:inputText value="#{karatecaBean.karateca.nome}"></h:inputText>
 		
