@@ -16,7 +16,7 @@
 </p:button>
     <h:form id="tbApresentacoes">
        <p:growl id="msg" showDetail="true"></p:growl>
-           <p:dataTable var="A" value="#{apresentacaoBean.listaApresentacoes}" rows="5"
+           <p:dataTable var="A" id="apresenta" value="#{apresentacaoBean.listaApresentacoes}" rows="5"
 					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" filteredValue="#{apresentacaoBean.filtroLista}">
@@ -24,6 +24,9 @@
 					<p:ajax event="rowEditCancel" listener="#{apresentacaoBean.cancelarApresentacao}" update=":tbApresentacoes:msg"></p:ajax>
 					<p:column headerText="Numero da Apresentacao" filterBy="#{A.idApresenta}" filterMatchMode="contains">
 						<p:outputLabel value="#{A.idApresenta}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Karateca">
+						<p:outputLabel value="#{A.karateca.nome}"></p:outputLabel>
 					</p:column>
 
 					<p:column headerText="Pontuação" filterBy="#{A.pontuacao}" filterMatchMode="contains" >
@@ -47,6 +50,15 @@
 						</h:commandLink>
 					</p:column>
 				</p:dataTable>
+
+
+				<h3>Gerar Pdf</h3>
+ 
+    <h:commandLink>
+        <p:graphicImage value="/imagens/pdf.png" />
+        <p:dataExporter type="pdf" target="apresenta" fileName="lista de competições" pageOnly="true" />
+    </h:commandLink>
+ 
 	</h:form>
 </h:body>
 	</ui:define>

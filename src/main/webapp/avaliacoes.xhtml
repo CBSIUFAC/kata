@@ -16,6 +16,9 @@
 		<h:inputText value="#{avaliacaoBean.avaliacao.nota}"></h:inputText>
 		</h:panelGrid>
 		<h:commandButton value="Inserir Nota" action="#{avaliacaoBean.inserirAvaliacao}"></h:commandButton>
+		<p:selectOneMenu value="#{avaliacaoBean.avaliacao.juiz}" converter="juizConverter">
+		<f:selectItems value="#{juizBean.listaJuizes}" var="juiz" itemLabel="#{juiz.nome}" itemValue="#{juiz}"></f:selectItems>
+		</p:selectOneMenu>
 	</h:form>
 </h:body>
 </ui:define>

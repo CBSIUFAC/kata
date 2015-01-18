@@ -1,57 +1,26 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<title>Lista de Apresentações</title>
-</h:head>
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="apresentacoes" value="Inserir Apresentações">
-    <f:param name="apresentacao" value="10" />
-</p:button>
-    <h:form id="tbApresentacoes">
-       <p:growl id="msg" showDetail="true"></p:growl>
-           <p:dataTable var="A" value="#{apresentacaoBean.listaApresentacoes}" rows="5"
-					editable="true" paginator="true"
-					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15" filteredValue="#{apresentacaoBean.filtroLista}">
-					<p:ajax event="rowEdit" listener="#{apresentacaoBean.atualizarApresentacao}"></p:ajax>
-					<p:ajax event="rowEditCancel" listener="#{apresentacaoBean.cancelarApresentacao}" update=":tbApresentacoes:msg"></p:ajax>
-					<p:column headerText="Numero da Apresentacao" filterBy="#{A.idApresenta}" filterMatchMode="contains">
-						<p:outputLabel value="#{A.idApresenta}"></p:outputLabel>
-					</p:column>
-					<p:column headerText="Karateca">
-						<p:outputLabel value="#{A.karateca.nome}"></p:outputLabel>
-					</p:column>
-
-					<p:column headerText="Pontuação" filterBy="#{A.pontuacao}" filterMatchMode="contains" >
-					    <p:cellEditor>
-					        <f:facet name="output">
-								<p:outputLabel value="#{A.pontuacao}"></p:outputLabel>
-							</f:facet>
-							<f:facet name="input">
-							  <p:inputText value="#{A.pontuacao}"></p:inputText>
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Atualizar">
-						<p:rowEditor></p:rowEditor>
-					</p:column>
-					<p:column headerText="Deletar">
-						<h:commandLink action="#{apresentacaoBean.deletarApresentacao}">
-							<p:graphicImage value="/imagens/delete.png" style="border:0"></p:graphicImage>
-							<f:setPropertyActionListener value="#{A}"
-								target="#{apresentacaoBean.apresentacao}"></f:setPropertyActionListener>
-						</h:commandLink>
-					</p:column>
-				</p:dataTable>
+<h:form>
+     <h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Id Apresentacao:"></h:outputLabel>
+		<h:inputText value="#{apresentacaoBean.apresentacao.idApresenta}"></h:inputText>
+		<h:outputLabel value="PontuaÃ§Ã£o: "></h:outputLabel>
+		<h:inputText value="#{apresentacaoBean.apresentacao.pontuacao}"></h:inputText>
+		<p:outputLabel value="Karateca"></p:outputLabel>
+		<p:selectOneMenu value="#{apresentacaoBean.apresentacao.karateca}" converter="karatecaConverter">
+		  <f:selectItems value="#{karatecaBean.listaKaratecas}" var="karat" itemLabel="#{karat.nome}" itemValue="#{karat}"></f:selectItems>
+		</p:selectOneMenu>
+		</h:panelGrid>
+		<h:commandButton value="Inserir Apresentacao" action="#{apresentacaoBean.inserirApresentacao}"></h:commandButton>
 	</h:form>
 </h:body>
-	</ui:define>
+</ui:define>
 </ui:composition>
 </html>
