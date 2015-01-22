@@ -10,23 +10,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
 public class Apresentacao{
+	
 	@Id
     private int idApresenta;
+	
 	@Column
     private float pontuacao;
-    @ManyToOne
+    
+	@ManyToOne
 	@JoinColumn(referencedColumnName="cpf",name="fKCpf")
 	private Karateca karateca;
+    
     @ManyToOne
 	@JoinColumn(referencedColumnName="idKata",name="fKata")
 	private Kata kata;
+    
     @ManyToOne
    	@JoinColumn(referencedColumnName="idFase",name="fkFase")
    	private Fase fase;
+    
     @OneToMany(mappedBy="apresentacao")
     private List<Avaliacao> avaliacao;
-	public int getIdApresenta() {
+	
+    public int getIdApresenta() {
 		return idApresenta;
+		
 	}
 	public void setIdApresenta(int idApresenta) {
 		this.idApresenta = idApresenta;

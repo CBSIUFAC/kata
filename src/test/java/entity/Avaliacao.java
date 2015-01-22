@@ -22,6 +22,7 @@ public class Avaliacao implements Serializable{
 	@ManyToOne
 	@JoinColumn(referencedColumnName="idApresenta",name="fkApresenta")
 	private Apresentacao apresentacao;
+	
 	public int getIdAvalia() {
 		return idAvalia;
 	}

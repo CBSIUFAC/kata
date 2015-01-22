@@ -7,13 +7,17 @@ import java.util.List;
 
 
 
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 import entity.Apresentacao;
+import entity.Avaliacao;
 import util.HibernateUtil;
 
 public class ApresentacaoDAO extends MasterDAO{
+	
+
 	//inserir
 	public void inserirApresentacao(Apresentacao apresentacao){
 		inserirObjeto(apresentacao);
@@ -22,6 +26,7 @@ public class ApresentacaoDAO extends MasterDAO{
 	public void atualizarApresentacao(Apresentacao apresentacao){
 		atualizarObjeto(apresentacao);
 	}
+
 	//deletar
 	public void deletarApresentacao(Apresentacao apresentacao){
 		deletarObjeto(apresentacao);
