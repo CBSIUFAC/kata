@@ -24,6 +24,7 @@ public class ApresentacaoBean {
 		
 		apresentacaoDAO.inserirApresentacao(apresentacao);
 		
+		
 		listaApresentacao = null;
 		return "listaapresentacoes";
 	}
@@ -60,9 +61,6 @@ public class ApresentacaoBean {
 
 	public void atualizarApresentacao(RowEditEvent evento){
 		apresentacao = (Apresentacao)evento.getObject();
-		
-		apresentacao.setPontuacao(calculaMedia());
-		apresentacaoDAO.atualizarApresentacao(apresentacao);
 	}
 
 	public void cancelarApresentacao(RowEditEvent evento){
@@ -70,14 +68,16 @@ public class ApresentacaoBean {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	
-	public float calculaMedia(){
+	public float calculaMedia(Apresentacao apresentacao){
 		float media = 0;
 		List<Avaliacao> avaliacoes = apresentacao.getAvaliacao();
 		for(Avaliacao a: avaliacoes){
 			media += a.getNota(); 
 		}		
+		
 		return (media/avaliacoes.size());
 	}
+
 	public ApresentacaoDAO getApresentacaoDAO() {
 		return apresentacaoDAO;
 	}
@@ -85,9 +85,9 @@ public class ApresentacaoBean {
 		this.apresentacaoDAO = apresentacaoDAO;
 	}
 	
-	public float getMedia() {
-		return calculaMedia();
-	}
+	//public float getMedia() {
+	//	return calculaMedia();
+	//}
 	
 	public void setMedia(float media) {
 		this.media = media;
@@ -98,4 +98,7 @@ public class ApresentacaoBean {
 	public void setListaApresentacao(List<Apresentacao> listaApresentacao) {
 		this.listaApresentacao = listaApresentacao;
 	}
+   
+   
+	
 }

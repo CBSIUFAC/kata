@@ -13,7 +13,7 @@
 		<h:outputLabel value="Id Avaliação:"></h:outputLabel>
 		<h:inputText value="#{avaliacaoBean.avaliacao.idAvalia}"></h:inputText>
 		<h:outputLabel value="Selecionar Apresentação:"></h:outputLabel>
-		<p:selectOneMenu value="#{avaliacaoBean.avaliacao.apresentacao}" converter="apresentacaoConverter">
+		<p:selectOneMenu value="#{avaliacaoBean.apresentacao}" converter="apresentacaoConverter">
 		<f:selectItems value="#{apresentacaoBean.listaApresentacoes}" var="apresentacao" itemLabel="#{apresentacao.idApresenta}" itemValue="#{apresentacao}"></f:selectItems>
 		</p:selectOneMenu>
 		<h:outputLabel value="Selecionar Juiz:"></h:outputLabel>

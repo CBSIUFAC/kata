@@ -31,10 +31,15 @@ public class AvaliacaoBean {
 	private ApresentacaoDAO apresentacaoDAO = new ApresentacaoDAO();
     private ApresentacaoBean abean = new ApresentacaoBean();
     
-    public String inserirAvaliacao(){
-    	
-		avaliacaoDAO.inserirAvaliacao(avaliacao);
-	
+    public String inserirAvaliacao() {
+    	System.out.println("a");
+    	avaliacaoDAO.inserirAvaliacao(avaliacao);
+    	System.out.println("b");
+    	apresentacao.setPontuacao(abean.calculaMedia(apresentacao));
+    	System.out.println(abean.calculaMedia(apresentacao));
+    	System.out.println("c");
+		apresentacaoDAO.atualizarApresentacao(apresentacao);
+		System.out.println("d");
 		
 		listaAvaliacao = null;
 		return "listaavaliacoes";
@@ -96,6 +101,8 @@ public class AvaliacaoBean {
 	}
 
 	public Apresentacao getApresentacao() {
+		if(apresentacao == null)
+			apresentacao = new Apresentacao();
 		return apresentacao;
 	}
 
@@ -103,11 +110,13 @@ public class AvaliacaoBean {
 		this.apresentacao = apresentacao;
 	}
 	public float calculaMedia(){
+		
 		float media = 0;
 		List<Avaliacao> avaliacoes = apresentacao.getAvaliacao();
 		for(Avaliacao a: avaliacoes){
 			media += a.getNota(); 
 		}		
-		return (media/avaliacoes.size());
+		
+		return media/avaliacoes.size();
 	}
 }
