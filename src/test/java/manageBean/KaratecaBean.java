@@ -17,6 +17,10 @@ public class KaratecaBean {
 	private Karateca karateca;
     private KaratecaDAO karatecaDAO= new KaratecaDAO();
     
+    public void prepararK(){
+		karateca = new Karateca();
+	}
+    
     public String inserirKarateca(){
 		karatecaDAO.inserirKarateca(karateca);
 		listaKarateca = null;

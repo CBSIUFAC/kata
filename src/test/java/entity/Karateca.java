@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import util.Utis;
 @Entity
 public class Karateca implements Serializable{
    @Id
@@ -25,10 +27,13 @@ public class Karateca implements Serializable{
    @Column
    private String faixa;
    @Column
-   private String categoria;
+   private int idade;
    @ManyToOne
    @JoinColumn(referencedColumnName="idDojo",name="fkDojo")
    private Dojo dojo;
+   @ManyToOne
+   @JoinColumn(referencedColumnName="idCategoria",name="fkCategoria")
+   private Categoria categoria;
    @OneToMany(mappedBy="karateca")
    private List<Apresentacao> apresentacao;
    public List<Apresentacao> getApresentacao() {
@@ -50,6 +55,8 @@ public class Karateca implements Serializable{
 	return dataNasc;
   }
   public void setDataNasc(Date dataNasc) {
+	  Utis cal = new Utis();
+	  this.idade = cal.calculaIdade(dataNasc);
 	this.dataNasc = dataNasc;
   }
   public char getSexo() {
@@ -64,11 +71,12 @@ public class Karateca implements Serializable{
   public void setFaixa(String faixa) {
 	this.faixa = faixa;
   }
-  public String getCategoria() {
-	return categoria;
-  }
-  public void setCategoria(String categoria) {
+  public void setCategoria(Categoria categoria) {
 	this.categoria = categoria;
+  }
+  
+  public Categoria getCategoria() {
+	return categoria;
   }
   public Dojo getDojo() {
  	return dojo;
@@ -79,7 +87,13 @@ public class Karateca implements Serializable{
   public void setApresentacao(List<Apresentacao> apresentacao) {
 	this.apresentacao = apresentacao;
   }
-  @Override
+  public int getIdade() {
+	return idade;
+}
+public void setIdade(int idade) {
+	this.idade = idade;
+}
+@Override
   public int hashCode() {
 	final int prime = 31;
 	int result = 1;

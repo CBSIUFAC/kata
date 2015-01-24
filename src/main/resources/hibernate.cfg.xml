@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory>
+ <session-factory name="">
   <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
   <property name="hibernate.connection.password">123456</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/eventoK</property>
@@ -11,12 +11,13 @@
   <property name="hibernate.hbm2ddl.auto">update</property>
   <property name="hibernate.show_sql">true</property>
   <mapping class="entity.Apresentacao"/>
-   <mapping class="entity.Avaliacao"/>
-    <mapping class="entity.Competicao"/>
-     <mapping class="entity.Dojo"/>
-      <mapping class="entity.Fase"/>
-       <mapping class="entity.Juiz"/>
-        <mapping class="entity.Karateca"/>
-         <mapping class="entity.Kata"/>
+  <mapping class="entity.Avaliacao"/>
+  <mapping class="entity.Competicao"/>
+  <mapping class="entity.Dojo"/>
+  <mapping class="entity.Fase"/>
+  <mapping class="entity.Juiz"/>
+  <mapping class="entity.Karateca"/>
+  <mapping class="entity.Kata"/>
+  <mapping class="entity.Categoria"/>
  </session-factory>
 </hibernate-configuration>

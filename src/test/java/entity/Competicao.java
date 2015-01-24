@@ -19,6 +19,12 @@ public class Competicao {
     private String nomeEvento;
 	@Column
     private String organizador;
+	@OneToMany(mappedBy="competicao")
+    private List<Categoria> categoria;
+	@Column
+    private Date data;
+	@OneToMany(mappedBy="competicao")
+	  private List<Fase> fase;
 	public int getIdEvento() {
 		return idEvento;
 	}
@@ -31,10 +37,6 @@ public class Competicao {
 	public void setFase(List<Fase> fase) {
 		this.fase = fase;
 	}
-	@Column
-    private Date data;
-	@OneToMany(mappedBy="competicao")
-	  private List<Fase> fase;
 	public String getNomeEvento() {
 		return nomeEvento;
 	}
@@ -73,5 +75,12 @@ public class Competicao {
 			return false;
 		return true;
 	}
+	public List<Categoria> getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
+	}
+	
 	
 }
