@@ -11,9 +11,25 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="katas" value="Inserir Kata">
-    <f:param name="kata" value="10" />
-</p:button>
+<h:form>
+<p:commandButton id="btnKata" value="Inserir" action="#{kataBean.prepararKa}"
+					onclick="PF('dlgKa').show()" update=":formKa"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgKa" modal="true">
+<h:form id="formKa">
+        <h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Descrição:"></h:outputLabel>
+		<h:inputText value="#{kataBean.kata.nomeKata}"></h:inputText>
+	    <h:outputLabel value="Numero de Passos:"></h:outputLabel>
+		<h:inputText value="#{kataBean.kata.passos}"></h:inputText>
+		</h:panelGrid>
+		<h:commandButton value="Inserir Kata" action="#{kataBean.inserirKata}"></h:commandButton>
+</h:form>
+</p:dialog>
     <h:form id="tbKatas">
        <p:growl id="msg" showDetail="true"></p:growl>
            <p:dataTable var="K" value="#{kataBean.listaKatas}" rows="5"

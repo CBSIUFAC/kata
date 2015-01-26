@@ -11,9 +11,28 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="competicoes" value="Inserir Competição">
-    <f:param name="competicao" value="10" />
-</p:button>
+<h:form>
+<p:commandButton id="btnCompeticao" value="Inserir" action="#{competicaoBean.prepararC}"
+					onclick="PF('dlgC').show()" update=":formC"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgC" modal="true">
+<h:form id="formC">
+<h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Descrição:"></h:outputLabel>
+		<h:inputText value="#{competicaoBean.competicao.nomeEvento}"></h:inputText>
+		<h:outputLabel value="Organizador:"></h:outputLabel>
+		<h:inputText value="#{competicaoBean.competicao.organizador}"></h:inputText>
+		<p:outputLabel value="Data da Competição :" />
+        <p:calendar id="mask" value="#{competicaoBean.competicao.data}" pattern="dd-MM-yyyy" mask="true" />
+   </h:panelGrid>
+		<h:commandButton value="Inserir Competicao" action="#{competicaoBean.inserirCompeticao}"></h:commandButton>
+</h:form>
+</p:dialog>
+
     <h:form id="tbCompeticoes">
        <p:growl id="msg" showDetail="true"></p:growl>
            <p:dataTable var="C" value="#{competicaoBean.listaCompeticoes}" rows="5"

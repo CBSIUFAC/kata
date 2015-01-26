@@ -18,7 +18,7 @@ import entity.Categoria;
 public class CategoriaBean {
 	private Categoria categoria;
     private CategoriaDAO categoriaDAO= new CategoriaDAO();
-    public void prepararK(){
+    public void prepararCa(){
 		categoria = new Categoria();
 	}
     public String inserirCategoria(){

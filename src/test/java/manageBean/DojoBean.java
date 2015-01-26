@@ -17,6 +17,9 @@ public class DojoBean {
 	private Dojo dojo;
     private DojoDAO dojoDAO= new DojoDAO();
     
+    public void prepararD(){
+ 		dojo = new Dojo();
+ 	}
     public String inserirDojo(){
 		dojoDAO.inserirDojo(dojo);
 		listaDojo = null;

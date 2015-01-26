@@ -11,9 +11,29 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="apresentacoes" value="Inserir Apresentações">
-    <f:param name="apresentacao" value="10" />
-</p:button>
+<h:form>
+<p:commandButton id="btnApresenta" value="Inserir" action="#{apresentacaoBean.prepararAp}"
+					onclick="PF('dlgAp').show()" update=":formAp"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgAp" modal="true">
+<h:form id="formAp">
+       <h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Id Apresentacao:"></h:outputLabel>
+		<h:inputText value="#{apresentacaoBean.apresentacao.idApresenta}"></h:inputText>
+		<h:outputLabel value="Pontuação: "></h:outputLabel>
+		<h:inputText value="#{apresentacaoBean.apresentacao.pontuacao}"></h:inputText>
+		<p:outputLabel value="Karateca"></p:outputLabel>
+		<p:selectOneMenu value="#{apresentacaoBean.apresentacao.karateca}" converter="karatecaConverter">
+		  <f:selectItems value="#{karatecaBean.listaKaratecas}" var="karat" itemLabel="#{karat.nome}" itemValue="#{karat}"></f:selectItems>
+		</p:selectOneMenu>
+		</h:panelGrid>
+		<h:commandButton value="Inserir Apresentacao" action="#{apresentacaoBean.inserirApresentacao}"></h:commandButton>
+</h:form>
+</p:dialog>
     <h:form id="tbApresentacoes">
        <p:growl id="msg" showDetail="true"></p:growl>
            <p:dataTable var="A" id="apresenta" value="#{apresentacaoBean.listaApresentacoes}" rows="5"

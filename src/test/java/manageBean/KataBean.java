@@ -17,6 +17,10 @@ import entity.Kata;
 public class KataBean {
     private Kata kata;
     private KataDAO kataDAO = new KataDAO();
+    
+    public void prepararKa(){
+    	kata = new Kata();
+    }
     public String inserirKata(){
  		kataDAO.inserirKata(kata);
  		listaKata = null;

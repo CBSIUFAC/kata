@@ -17,6 +17,9 @@ public class FaseBean {
 	private Fase fase;
     private FaseDAO faseDAO= new FaseDAO();
     
+    public void prepararF(){
+     fase = new Fase();
+    }
     public String inserirFase(){
 		faseDAO.inserirFase(fase);
 		listaFase = null;

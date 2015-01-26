@@ -17,6 +17,10 @@ import entity.Competicao;
 public class CompeticaoBean {
      private Competicao competicao;
      private CompeticaoDAO competicaoDAO = new CompeticaoDAO();
+     
+     public void prepararC(){
+ 		competicao = new Competicao();
+ 	}
     
      public String inserirCompeticao(){
   		competicaoDAO.inserirCompeticao(competicao);

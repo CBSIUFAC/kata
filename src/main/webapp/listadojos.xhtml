@@ -11,21 +11,25 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-            <h:form id="formDojo">
-				<p:dialog widgetVar="dlgDojo" modal="true">
-					<h:outputLabel value="Nome Dojo:"></h:outputLabel>
-					<h:inputText id="desc" value="#{dojoBean.dojo.nomeDojo}"></h:inputText>
-					<h:commandButton value="Inserir Dojo"
-						action="#{dojoBean.inserirDojo}"></h:commandButton>
-				</p:dialog>
-			</h:form>
-			<h:form id="formListaDojo">
-			<p:commandButton value="Inserir Dojos"
-					onclick="PF('dlgDojo').show()" update=":formDojo:desc"
-					process="@this">
-					<p:resetInput target=":formDojo:desc"></p:resetInput>
-				</p:commandButton>
-				<p:growl id="msg" showDetail="true"></p:growl>
+  <h:form>
+<p:commandButton id="btnDojo" value="Inserir" action="#{dojoBean.prepararD}"
+					onclick="PF('dlgD').show()" update=":formD"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgD" modal="true">
+<h:form id="formD">
+<h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Descrição:"></h:outputLabel>
+		<h:inputText value="#{dojoBean.dojo.nomeDojo}"></h:inputText>
+</h:panelGrid>
+		<h:commandButton value="Inserir Dojo" action="#{dojoBean.inserirDojo}"></h:commandButton>
+</h:form>
+</p:dialog>    
+<h:form id="formListaDojo">
+ <p:growl id="msg" showDetail="true"></p:growl>
  <p:dataTable var="d" value="#{dojoBean.listaDojos}" editable="true">
     <p:ajax event="rowEdit" listener="#{dojoBean.atualizarDojo}"></p:ajax>
     <p:ajax event="rowEditCancel" listener="#{dojoBean.cancelarDojo}"

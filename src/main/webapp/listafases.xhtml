@@ -11,9 +11,23 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="fases" value="Inserir Fases">
-    <f:param name="fase" value="10" />
-</p:button>
+<h:form>
+<p:commandButton id="btnFase" value="Inserir" action="#{faseBean.prepararF}"
+					onclick="PF('dlgF').show()" update=":formF"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgF" modal="true">
+<h:form id="formF">
+<h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Descrição:"></h:outputLabel>
+		<h:inputText value="#{faseBean.fase.fase}"></h:inputText>
+		</h:panelGrid>
+		<h:commandButton value="Inserir Fase" action="#{faseBean.inserirFase}"></h:commandButton>
+</h:form>
+</p:dialog>
     <h:form id="tbFases">
        <p:growl id="msg" showDetail="true"></p:growl>
            <p:dataTable var="F" value="#{faseBean.listaFases}" rows="5"

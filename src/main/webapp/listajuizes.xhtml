@@ -11,9 +11,23 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="juizes" value="Inserir Juiz">
-    <f:param name="juiz" value="10" />
-</p:button>
+<h:form>
+<p:commandButton id="btnJuiz" value="Inserir" action="#{juizBean.prepararJ}"
+					onclick="PF('dlgJ').show()" update=":formJ"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgJ" modal="true">
+<h:form id="formJ">
+<h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Nome:"></h:outputLabel>
+		<h:inputText value="#{juizBean.juiz.nome}"></h:inputText>
+		</h:panelGrid>
+		<h:commandButton value="Inserir Juiz" action="#{juizBean.inserirJuiz}"></h:commandButton>
+</h:form>
+</p:dialog>
     <h:form id="tbJuizes">
        <p:growl id="msg" showDetail="true"></p:growl>
            <p:dataTable var="J" value="#{juizBean.listaJuizes}" rows="5"
@@ -22,7 +36,7 @@
 					rowsPerPageTemplate="5,10,15" filteredValue="#{juizBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{juizBean.atualizarJuiz}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{juizBean.cancelarJuiz}" update=":tbJuizes:msg"></p:ajax>
-					<p:column headerText="RG Karateca" filterBy="#{J.idJuiz}" filterMatchMode="contains">
+					<p:column headerText="Id Juiz" filterBy="#{J.idJuiz}" filterMatchMode="contains">
 						<p:outputLabel value="#{J.idJuiz}"></p:outputLabel>
 					</p:column>
 

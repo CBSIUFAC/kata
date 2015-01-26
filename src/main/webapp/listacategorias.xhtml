@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="/template/principal.xhtml">
+	<ui:define name="content">
+<h:body>
+<h:form>
+<p:commandButton id="btnCatgeoria" value="Inserir" action="#{categoriaBean.prepararCa}"
+					onclick="PF('dlgCa').show()" update=":formCa"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgCa" modal="true">
+<h:form id="formCa">
+<h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Categoria :"></h:outputLabel>
+		<h:inputText id="nome" value="#{categoriaBean.categoria.nome}"></h:inputText>
+        <h:outputLabel  value="Campeonato:"></h:outputLabel>
+        <p:selectOneMenu value="#{categoriaBean.categoria.competicao}" converter="competicaoConverter">
+		    <f:selectItems value="#{competicaoBean.listaCompeticoes}" var="comp" itemLabel="#{comp.nomeEvento}" itemValue="#{comp}"></f:selectItems>
+		</p:selectOneMenu>
+		<h:outputLabel value="Faixa :"></h:outputLabel>
+		<p:selectOneMenu id="campeonato" value="#{categoriaBean.categoria.faixa}" >
+            <f:selectItem itemLabel="Selecione a Faixa" itemValue="" />
+            <f:selectItem itemLabel="Branca" itemValue="Branca" />
+            <f:selectItem itemLabel="Amarela" itemValue="Amarela" />
+            <f:selectItem itemLabel="Vermelha" itemValue="Vermelha" />
+            <f:selectItem itemLabel="Laranja" itemValue="Laranja" />
+            <f:selectItem itemLabel="Verde" itemValue="Verde" />
+            <f:selectItem itemLabel="Roxo" itemValue="Roxo" />
+            <f:selectItem itemLabel="Marrom" itemValue="Marrom" />
+            <f:selectItem itemLabel="Preta" itemValue="Preta" />
+        </p:selectOneMenu>
+        <h:outputLabel  value="Idade Minima: "></h:outputLabel>
+        <h:inputText id="idadeMin" value="#{categoriaBean.categoria.min}"></h:inputText>
+		<h:outputLabel  value="Idade Maxima: "></h:outputLabel>
+		<h:inputText id="idadeMax" value="#{categoriaBean.categoria.max}"></h:inputText>
+     </h:panelGrid>
+     <h:commandButton value="Inserir" action="#{categoriaBean.inserirCategoria}" ></h:commandButton>
+</h:form>
+</p:dialog>
+
+    <h:form id="tbCategorias">
+       <p:growl id="msg" showDetail="true"></p:growl>
+           <p:dataTable var="Ca" value="#{categoriaBean.listaCategorias}" rows="15"
+					editable="true" paginator="true"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,15" filteredValue="#{categoriaBean.filtroLista}">
+					<p:ajax event="rowEdit" listener="#{categoriaBean.atualizarCategoria}"></p:ajax>
+					<p:ajax event="rowEditCancel" listener="#{categoriaBean.cancelarCategoria}" update=":tbCategorias:msg"></p:ajax>
+					<p:column headerText="Id " filterBy="#{Ca.idCategoria}" filterMatchMode="contains">
+						<p:outputLabel value="#{Ca.idCategoria}"></p:outputLabel>
+					</p:column>
+                     <p:column headerText="Campeonato" >
+								<p:outputLabel value="#{Ca.competicao.nomeEvento}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Categoria" filterBy="#{Ca.nome}" filterMatchMode="contains" >
+					    <p:cellEditor>
+					        <f:facet name="output">
+								<p:outputLabel value="#{Ca.nome}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+							  <p:inputText value="#{Ca.nome}"></p:inputText>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Faixa" >
+							<p:cellEditor>
+					        <f:facet name="output">
+								<p:outputLabel value="#{Ca.faixa}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+							        <p:selectOneMenu id="compe" value="#{Ca.faixa}" >
+                                    <f:selectItem itemLabel="Branca" itemValue="Branca" />
+                                    <f:selectItem itemLabel="Amarela" itemValue="Amarela" />
+                                    <f:selectItem itemLabel="Vermelha" itemValue="Vermelha" />
+                                    <f:selectItem itemLabel="Laranja" itemValue="Laranja" />
+                                    <f:selectItem itemLabel="Verde" itemValue="Verde" />
+                                    <f:selectItem itemLabel="Roxo" itemValue="Roxo" />
+                                    <f:selectItem itemLabel="Marrom" itemValue="Marrom" />
+                                    <f:selectItem itemLabel="Preta" itemValue="Preta" />
+                                    </p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Idade Minima:">
+					  <p:cellEditor>
+					   <f:facet name="output">
+		               <h:outputLabel value="#{Ca.min}"></h:outputLabel>
+		               </f:facet>
+		               <f:facet name="input">
+		               <h:inputText value="#{Ca.min}"></h:inputText>
+		               </f:facet>
+		               </p:cellEditor>
+		            </p:column>
+		            <p:column headerText="Idade Max:">
+		               <p:cellEditor>
+					   <f:facet name="output">
+		               <h:outputLabel value="#{Ca.max}"></h:outputLabel>
+		               </f:facet>
+		               <f:facet name="input">
+		               <h:inputText value="#{Ca.max}"></h:inputText>
+		               </f:facet>
+		               </p:cellEditor>
+		            </p:column>
+					<p:column headerText="Atualizar">
+						<p:rowEditor></p:rowEditor>
+					</p:column>
+					<p:column headerText="Deletar">
+						<h:commandLink action="#{categoriaBean.deletarCategoria}">
+							<p:graphicImage value="/imagens/delete.png" style="border:0"></p:graphicImage>
+							<f:setPropertyActionListener value="#{Ca}"
+								target="#{categoriaBean.categoria}"></f:setPropertyActionListener>
+						</h:commandLink>
+					</p:column>
+				</p:dataTable>
+	</h:form>
+</h:body>
+	</ui:define>
+</ui:composition>
+</html>

@@ -17,6 +17,9 @@ public class JuizBean {
      private Juiz juiz;
      private JuizDAO juizDAO= new JuizDAO();
      
+     public void prepararJ(){
+    	 juiz = new Juiz();
+     }
      public String inserirJuiz(){
  		juizDAO.inserirJuiz(juiz);
  		listaJuiz = null;

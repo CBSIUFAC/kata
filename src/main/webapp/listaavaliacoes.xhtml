@@ -11,9 +11,33 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 <h:body>
-<p:button outcome="avaliacoes" value="Inserir Avaliação">
-    <f:param name="avaliacao" value="10" />
-</p:button>
+<h:form>
+<p:commandButton id="btnAva" value="Inserir" action="#{avaliacaoBean.prepararA}"
+					onclick="PF('dlgA').show()" update=":formA"
+						process="@this">
+					
+</p:commandButton>
+</h:form>
+
+<p:dialog widgetVar="dlgA" modal="true">
+<h:form id="formA">
+      <h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Id Avaliação:"></h:outputLabel>
+		<h:inputText value="#{avaliacaoBean.avaliacao.idAvalia}"></h:inputText>
+		<h:outputLabel value="Selecionar Apresentação:"></h:outputLabel>
+		<p:selectOneMenu value="#{avaliacaoBean.apresentacao}" converter="apresentacaoConverter">
+		<f:selectItems value="#{apresentacaoBean.listaApresentacoes}" var="apresentacao" itemLabel="#{apresentacao.karateca.nome}" itemValue="#{apresentacao}"></f:selectItems>
+		</p:selectOneMenu>
+		<h:outputLabel value="Selecionar Juiz:"></h:outputLabel>
+		<p:selectOneMenu value="#{avaliacaoBean.avaliacao.juiz}" converter="juizConverter">
+		<f:selectItems value="#{juizBean.listaJuizes}" var="juiz" itemLabel="#{juiz.nome}" itemValue="#{juiz}"></f:selectItems>
+		</p:selectOneMenu>
+		<h:outputLabel value="Nota:"></h:outputLabel>
+		<h:inputText value="#{avaliacaoBean.avaliacao.nota}"></h:inputText>
+		</h:panelGrid>
+		<h:commandButton value="Avaliar" action="#{avaliacaoBean.inserirAvaliacao}"></h:commandButton>
+</h:form>
+</p:dialog>
     <h:form id="tbAvaliacoes">
        <p:growl id="msg" showDetail="true"></p:growl>
            <p:dataTable var="A" value="#{avaliacaoBean.listaAvaliacao}" rows="5"
