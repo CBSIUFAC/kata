@@ -18,29 +18,24 @@ import entity.Avaliacao;
 @SessionScoped
 public class AvaliacaoBean {
 	private Avaliacao avaliacao;
-	private Apresentacao apresentacao;
     private AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
-    public ApresentacaoDAO getApresentacaoDAO() {
-		return apresentacaoDAO;
-	}
-
-	public void setApresentacaoDAO(ApresentacaoDAO apresentacaoDAO) {
-		this.apresentacaoDAO = apresentacaoDAO;
-	}
-
-	private ApresentacaoDAO apresentacaoDAO = new ApresentacaoDAO();
-    private ApresentacaoBean abean = new ApresentacaoBean();
+    private Apresentacao apresentacao = new Apresentacao();
+    
+    public void prepararA(){
+    	avaliacao = new Avaliacao();
+    }
     
     public String inserirAvaliacao() {
-    	System.out.println("a");
-    	avaliacaoDAO.inserirAvaliacao(avaliacao);
-    	System.out.println("b");
+    	/*System.out.println("a");
+    	
+    	/*System.out.println("b");
     	apresentacao.setPontuacao(abean.calculaMedia(apresentacao));
-    	System.out.println(abean.calculaMedia(apresentacao));
+    	System.out.println(abean.calculaMedia(apresentacao)+" Result");
     	System.out.println("c");
 		apresentacaoDAO.atualizarApresentacao(apresentacao);
-		System.out.println("d");
-		
+		System.out.println("Novo");*/
+    	avaliacao.setApresentacao(apresentacao);
+    	avaliacaoDAO.inserirAvaliacao(avaliacao);
 		listaAvaliacao = null;
 		return "listaavaliacoes";
 	}
@@ -51,12 +46,7 @@ public class AvaliacaoBean {
 	public void setAvaliacaoDAO(AvaliacaoDAO avaliacaoDAO) {
 		this.avaliacaoDAO = avaliacaoDAO;
 	}
-	public ApresentacaoBean getAbean() {
-		return abean;
-	}
-	public void setAbean(ApresentacaoBean abean) {
-		this.abean = abean;
-	}
+
 	public void setListaAvaliacao(List<Avaliacao> listaAvaliacao) {
 		this.listaAvaliacao = listaAvaliacao;
 	}
@@ -109,14 +99,5 @@ public class AvaliacaoBean {
 	public void setApresentacao(Apresentacao apresentacao) {
 		this.apresentacao = apresentacao;
 	}
-	public float calculaMedia(){
-		
-		float media = 0;
-		List<Avaliacao> avaliacoes = apresentacao.getAvaliacao();
-		for(Avaliacao a: avaliacoes){
-			media += a.getNota(); 
-		}		
-		
-		return media/avaliacoes.size();
-	}
+	
 }

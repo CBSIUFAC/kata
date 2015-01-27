@@ -15,7 +15,10 @@
 <p:commandButton id="btnApresenta" value="Inserir" action="#{apresentacaoBean.prepararAp}"
 					onclick="PF('dlgAp').show()" update=":formAp"
 						process="@this">
-					
+</p:commandButton>
+</h:form>
+<h:form>
+<p:commandButton id="btnAtualiza" value="Atualizar Dados" actionListener="#{processaBean.atualizaDado}" process="@this" updade=":tbApresentacoes">			
 </p:commandButton>
 </h:form>
 
@@ -37,7 +40,7 @@
     <h:form id="tbApresentacoes">
        <p:growl id="msg" showDetail="true"></p:growl>
            <p:dataTable var="A" id="apresenta" value="#{apresentacaoBean.listaApresentacoes}" rows="5"
-					editable="true" paginator="true"
+					editable="true" paginator="true" 
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" filteredValue="#{apresentacaoBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{apresentacaoBean.atualizarApresentacao}"></p:ajax>
@@ -52,7 +55,7 @@
 					<p:column headerText="Pontuação" filterBy="#{A.pontuacao}" filterMatchMode="contains" >
 					    <p:cellEditor>
 					        <f:facet name="output">
-								<p:outputLabel value="#{A.pontuacao}"></p:outputLabel>
+								<p:outputLabel id="media" value="#{A.pontuacao}"></p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 							  <p:inputText value="#{A.pontuacao}"></p:inputText>

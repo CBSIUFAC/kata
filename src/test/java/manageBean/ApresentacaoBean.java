@@ -18,16 +18,16 @@ import entity.Avaliacao;
 public class ApresentacaoBean {
 	private Apresentacao apresentacao;
 	private ApresentacaoDAO apresentacaoDAO = new ApresentacaoDAO();
-	private float media;
 	
+	public void prepararAp(){
+		apresentacao = new Apresentacao();
+	}
 	public String inserirApresentacao(){
-		
 		apresentacaoDAO.inserirApresentacao(apresentacao);
-		
-		
 		listaApresentacao = null;
 		return "listaapresentacoes";
 	}
+	
 	public Apresentacao getApresentacao() {
 		if(apresentacao == null)
 			apresentacao = new Apresentacao();
@@ -42,8 +42,16 @@ public class ApresentacaoBean {
 	private List<Apresentacao> filtroLista=null;
 
 	public List<Apresentacao> getListaApresentacoes(){
+		/*List<Apresentacao> ap = apresentacaoDAO.listarApresentacao();
+		if(ap != null){
+			for(Apresentacao a: ap){
+				a.setPontuacao(calculaMedia(a));
+				System.out.println(calculaMedia(a));
+				apresent2.atualizarApresentacao(a);;
+			}	
+		}*/	
 		if(listaApresentacao == null)
-			listaApresentacao = apresentacaoDAO.listarApresentacao();
+			return listaApresentacao = apresentacaoDAO.listarApresentacao();
 		return listaApresentacao;
 	}
 	public List<Apresentacao> getFiltroLista() {
@@ -68,15 +76,6 @@ public class ApresentacaoBean {
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	
-	public float calculaMedia(Apresentacao apresentacao){
-		float media = 0;
-		List<Avaliacao> avaliacoes = apresentacao.getAvaliacao();
-		for(Avaliacao a: avaliacoes){
-			media += a.getNota(); 
-		}		
-		
-		return (media/avaliacoes.size());
-	}
 
 	public ApresentacaoDAO getApresentacaoDAO() {
 		return apresentacaoDAO;
@@ -85,13 +84,6 @@ public class ApresentacaoBean {
 		this.apresentacaoDAO = apresentacaoDAO;
 	}
 	
-	//public float getMedia() {
-	//	return calculaMedia();
-	//}
-	
-	public void setMedia(float media) {
-		this.media = media;
-	}
 	public List<Apresentacao> getListaApresentacao() {
 		return listaApresentacao;
 	}
