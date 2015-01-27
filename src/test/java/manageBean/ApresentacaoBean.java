@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -51,7 +52,7 @@ public class ApresentacaoBean {
 			}	
 		}*/	
 		if(listaApresentacao == null)
-			return listaApresentacao = apresentacaoDAO.listarApresentacao();
+			listaApresentacao = apresentacaoDAO.listarApresentacao();
 		return listaApresentacao;
 	}
 	public List<Apresentacao> getFiltroLista() {
@@ -83,14 +84,39 @@ public class ApresentacaoBean {
 	public void setApresentacaoDAO(ApresentacaoDAO apresentacaoDAO) {
 		this.apresentacaoDAO = apresentacaoDAO;
 	}
-	
-	public List<Apresentacao> getListaApresentacao() {
-		return listaApresentacao;
-	}
-	public void setListaApresentacao(List<Apresentacao> listaApresentacao) {
-		this.listaApresentacao = listaApresentacao;
-	}
    
-   
+	ApresentacaoDAO apresentacaoDAO2 =new ApresentacaoDAO();
+	 public String atualizaDado(){
+		 List<Apresentacao> ap = apresentacaoDAO2.listarApresentacao();
+		 float num;
+		 if(ap != null){
+			 for(Apresentacao a: ap){			
+				 if(calculaMedia(a)!= 0)
+					 num = calculaMedia(a);
+				 else
+					 num = 0;
+				 a.setPontuacao(calculaMedia(a));
+				 System.out.println(calculaMedia(a));
+				 apresentacaoDAO2.atualizarApresentacao(a);
+			 }	
+		 }
+		 listaApresentacao = null;
+			return "listaapresentacoes";
+	 }
+	public float calculaMedia(Apresentacao apresentacao){
+		float media = 0;
+		List<Avaliacao> avaliacoes = apresentacao.getAvaliacao();
+		if(avaliacoes != null){
+			for(Avaliacao a: avaliacoes){
+				media = media + a.getNota(); 
+			}		
+			
+			return media/avaliacoes.size();
+			
+		}
+		else{
+			return (float) 0;
+		}
+	}
 	
 }

@@ -18,7 +18,8 @@
 </p:commandButton>
 </h:form>
 <h:form>
-<p:commandButton id="btnAtualiza" value="Atualizar Dados" actionListener="#{processaBean.atualizaDado}" process="@this" updade=":tbApresentacoes">			
+<p:commandButton id="btnAtualiza" value="Atualizar Dados" action="#{apresentacaoBean.atualizaDado}" update=":tbApresentacoes"
+						process="@this">			
 </p:commandButton>
 </h:form>
 

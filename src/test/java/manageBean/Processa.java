@@ -13,11 +13,9 @@ import entity.Avaliacao;
 @ManagedBean(name="processaBean")
 @SessionScoped
 public class Processa {
-	 Apresentacao ap ;
-	 ApresentacaoDAO apresentacaoDAO =new ApresentacaoDAO();
-	 private List<Apresentacao> listaApresentacao;
+	 ApresentacaoDAO apresentacaoDAO2 =new ApresentacaoDAO();
 	 public void atualizaDado(ActionEvent actionEvent){
-		 List<Apresentacao> ap = apresentacaoDAO.listarApresentacao();
+		 List<Apresentacao> ap = apresentacaoDAO2.listarApresentacao();
 		 float num;
 		 if(ap != null){
 			 for(Apresentacao a: ap){			
@@ -27,15 +25,10 @@ public class Processa {
 					 num = 0;
 				 a.setPontuacao(calculaMedia(a));
 				 System.out.println(calculaMedia(a));
-				 apresentacaoDAO.atualizarApresentacao(a);
+				 apresentacaoDAO2.atualizarApresentacao(a);
 			 }	
 		 }
 	 }
-	public List<Apresentacao> getListaApresentacoes(){
-		 if(listaApresentacao == null)
-			listaApresentacao = apresentacaoDAO.listarApresentacao();
-		return listaApresentacao;
-	}
 	public float calculaMedia(Apresentacao apresentacao){
 		float media = 0;
 		List<Avaliacao> avaliacoes = apresentacao.getAvaliacao();
