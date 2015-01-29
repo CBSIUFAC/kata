@@ -22,11 +22,9 @@
 <p:dialog widgetVar="dlgA" modal="true">
 <h:form id="formA">
       <h:panelGrid columns="2" cellpadding="5">
-		<h:outputLabel value="Id Avaliação:"></h:outputLabel>
-		<h:inputText value="#{avaliacaoBean.avaliacao.idAvalia}"></h:inputText>
 		<h:outputLabel value="Selecionar Apresentação:"></h:outputLabel>
 		<p:selectOneMenu value="#{avaliacaoBean.apresentacao}" converter="apresentacaoConverter">
-		<f:selectItems value="#{apresentacaoBean.listaApresentacoes}" var="apresentacao" itemLabel="#{apresentacao.karateca.nome}" itemValue="#{apresentacao}"></f:selectItems>
+		<f:selectItems value="#{apresentacaoBean.listaApresentacoes}" var="apresentacao" itemLabel="#{apresentacao.nomeApresenta}" itemValue="#{apresentacao}"></f:selectItems>
 		</p:selectOneMenu>
 		<h:outputLabel value="Selecionar Juiz:"></h:outputLabel>
 		<p:selectOneMenu value="#{avaliacaoBean.avaliacao.juiz}" converter="juizConverter">
@@ -46,7 +44,7 @@
 					rowsPerPageTemplate="5,10,15" filteredValue="#{avaliacaoBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{avalaicaoBean.atualizarAvaliacao}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{avaliacaoBean.cancelarAvaliacao}" update=":tbAvaliacoes:msg"></p:ajax>
-					<p:column headerText="Id Nota" filterBy="#{A.idAvalia}" filterMatchMode="contains">
+					<p:column headerText="Id da Avaliação" filterBy="#{A.idAvalia}" filterMatchMode="contains">
 						<p:outputLabel value="#{A.idAvalia}"></p:outputLabel>
 					</p:column>
 

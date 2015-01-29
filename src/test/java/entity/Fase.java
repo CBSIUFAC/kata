@@ -15,7 +15,7 @@ public class Fase {//implements Serializable
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idFase;
 	@Column
-	private String fase;
+	private String nomeFase;
 	@ManyToOne
 	@JoinColumn(referencedColumnName="idEvento",name="fkCompeticao")
 	private Competicao competicao;
@@ -27,11 +27,26 @@ public class Fase {//implements Serializable
 	public void setIdFase(int idFase) {
 		this.idFase = idFase;
 	}
-	public String getFase() {
-		return fase;
+	public String getNomeFase() {
+		return nomeFase;
 	}
-	public void setFase(String fase) {
-		this.fase = fase;
+	public void setNomeFase(String nomeFase) {
+		this.nomeFase = nomeFase;
+	}
+	public Competicao getCompeticao() {
+		return competicao;
+	}
+	public void setCompeticao(Competicao competicao) {
+		this.competicao = competicao;
+	}
+	public List<Apresentacao> getApresentacao() {
+		return apresentacao;
+	}
+	public void setApresentacao(List<Apresentacao> apresentacao) {
+		this.apresentacao = apresentacao;
+	}
+	public void setnomeFase(String nomeFase) {
+		this.nomeFase = nomeFase;
 	}
 	@Override
 	public int hashCode() {

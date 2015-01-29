@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Avaliacao implements Serializable{
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idAvalia;
 	@Column
 	private float nota;

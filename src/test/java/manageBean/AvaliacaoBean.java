@@ -36,6 +36,7 @@ public class AvaliacaoBean {
 		System.out.println("Novo");*/
     	avaliacao.setApresentacao(apresentacao);
     	avaliacaoDAO.inserirAvaliacao(avaliacao);
+    	System.out.println(apresentacao.getNomeApresenta());
 		listaAvaliacao = null;
 		return "listaavaliacoes";
 	}

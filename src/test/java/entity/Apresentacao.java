@@ -5,21 +5,35 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.lowagie.toolbox.plugins.Concat;
 
 import manageBean.AvaliacaoBean;
 @Entity
 public class Apresentacao{
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     private int idApresenta;
 	
 	@Column
     private float pontuacao;
+	
+	@Column
+	private String NomeApresenta;
     
+	public String getNomeApresenta() {
+		return NomeApresenta;
+	}
+	public void setNomeApresenta(String nomeApresenta) {
+		this.NomeApresenta = nomeApresenta;
+	}
 	@ManyToOne
 	@JoinColumn(referencedColumnName="cpf",name="fKCpf")
 	private Karateca karateca;

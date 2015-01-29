@@ -10,20 +10,28 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.event.RowEditEvent;
 
+import com.lowagie.toolbox.plugins.Concat;
+
 import DAO.ApresentacaoDAO;
 import entity.Apresentacao;
 import entity.Avaliacao;
+import entity.Fase;
+import entity.Karateca;
+import entity.Kata;
 
 @ManagedBean(name="apresentacaoBean")
 @SessionScoped
 public class ApresentacaoBean {
+	
 	private Apresentacao apresentacao;
 	private ApresentacaoDAO apresentacaoDAO = new ApresentacaoDAO();
+	ApresentacaoDAO apresentacaoDAO3 = new ApresentacaoDAO();
 	
 	public void prepararAp(){
 		apresentacao = new Apresentacao();
 	}
 	public String inserirApresentacao(){
+		apresentacao.setNomeApresenta(Concat(apresentacao));
 		apresentacaoDAO.inserirApresentacao(apresentacao);
 		listaApresentacao = null;
 		return "listaapresentacoes";
@@ -119,4 +127,8 @@ public class ApresentacaoBean {
 		}
 	}
 	
+	public String Concat(Apresentacao apresentacao){
+		
+		return apresentacao.getFase().getNomeFase().concat(" ").concat(apresentacao.getKata().getNomeKata().concat(" ")).concat(apresentacao.getKarateca().getNome());
+	}
 }

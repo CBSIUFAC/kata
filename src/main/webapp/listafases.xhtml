@@ -23,7 +23,7 @@
 <h:form id="formF">
 <h:panelGrid columns="2" cellpadding="5">
 		<h:outputLabel value="Descrição:"></h:outputLabel>
-		<h:inputText value="#{faseBean.fase.fase}"></h:inputText>
+		<h:inputText value="#{faseBean.fase.nomeFase}"></h:inputText>
 		</h:panelGrid>
 		<h:commandButton value="Inserir Fase" action="#{faseBean.inserirFase}"></h:commandButton>
 </h:form>
@@ -36,17 +36,17 @@
 					rowsPerPageTemplate="5,10,15" filteredValue="#{faseBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{faseBean.atualizarFase}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{faseBean.cancelarFase}" update=":tbFases:msg"></p:ajax>
-					<p:column headerText="Fase" filterBy="#{F.idFase}" filterMatchMode="contains">
+					<p:column headerText="Id da Fase" filterBy="#{F.idFase}" filterMatchMode="contains">
 						<p:outputLabel value="#{F.idFase}"></p:outputLabel>
 					</p:column>
 
-					<p:column headerText="Tipo de Fase" filterBy="#{F.fase}" filterMatchMode="contains" >
+					<p:column headerText="Tipo de Fase" filterBy="#{F.nomeFase}" filterMatchMode="contains" >
 					    <p:cellEditor>
 					        <f:facet name="output">
-								<p:outputLabel value="#{F.fase}"></p:outputLabel>
+								<p:outputLabel value="#{F.nomeFase}"></p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
-							  <p:inputText value="#{F.fase}"></p:inputText>
+							  <p:inputText value="#{F.nomeFase}"></p:inputText>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
