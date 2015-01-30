@@ -23,7 +23,9 @@ public class Categoria {
 	  @Column
       private int max;
 	  @Column
-      private String faixa;
+      private int faixaMin;
+	  @Column
+      private int faixaMax;
       @ManyToOne
       @JoinColumn(referencedColumnName="idEvento",name="fkCompeticao")
       private Competicao competicao;
@@ -53,11 +55,17 @@ public class Categoria {
 	public void setMax(int max) {
 		this.max = max;
 	}
-	public String getFaixa() {
-		return faixa;
+	public int getFaixaMin() {
+		return faixaMin;
 	}
-	public void setFaixa(String faixa) {
-		this.faixa = faixa;
+	public void setFaixaMin(int faixaMin) {
+		this.faixaMin = faixaMin;
+	}
+	public int getFaixaMax() {
+		return faixaMax;
+	}
+	public void setFaixaMax(int faixaMax) {
+		this.faixaMax = faixaMax;
 	}
 	public Competicao getCompeticao() {
 		return competicao;

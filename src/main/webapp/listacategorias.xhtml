@@ -25,17 +25,29 @@
         <p:selectOneMenu value="#{categoriaBean.categoria.competicao}" converter="competicaoConverter">
 		    <f:selectItems value="#{competicaoBean.listaCompeticoes}" var="comp" itemLabel="#{comp.nomeEvento}" itemValue="#{comp}"></f:selectItems>
 		</p:selectOneMenu>
-		<h:outputLabel value="Faixa :"></h:outputLabel>
-		<p:selectOneMenu id="campeonato" value="#{categoriaBean.categoria.faixa}" >
-            <f:selectItem itemLabel="Selecione a Faixa" itemValue="" />
-            <f:selectItem itemLabel="Branca" itemValue="Branca" />
-            <f:selectItem itemLabel="Amarela" itemValue="Amarela" />
-            <f:selectItem itemLabel="Vermelha" itemValue="Vermelha" />
-            <f:selectItem itemLabel="Laranja" itemValue="Laranja" />
-            <f:selectItem itemLabel="Verde" itemValue="Verde" />
-            <f:selectItem itemLabel="Roxo" itemValue="Roxo" />
-            <f:selectItem itemLabel="Marrom" itemValue="Marrom" />
-            <f:selectItem itemLabel="Preta" itemValue="Preta" />
+		<h:outputLabel value="De Faixa :"></h:outputLabel>
+		<p:selectOneMenu id="faixaMin" value="#{categoriaBean.categoria.faixaMin}" >
+            <f:selectItem itemLabel="Selecione a Faixa" itemValue="0" />
+            <f:selectItem itemLabel="Branca" itemValue="1" />
+            <f:selectItem itemLabel="Amarela" itemValue="2" />
+            <f:selectItem itemLabel="Vermelha" itemValue="3" />
+            <f:selectItem itemLabel="Laranja" itemValue="4" />
+            <f:selectItem itemLabel="Verde" itemValue="5" />
+            <f:selectItem itemLabel="Roxa" itemValue="6" />
+            <f:selectItem itemLabel="Marrom" itemValue="7" />
+            <f:selectItem itemLabel="Preta" itemValue="8" />
+        </p:selectOneMenu>
+        <h:outputLabel value="Até Faixa :"></h:outputLabel>
+		<p:selectOneMenu id="faixaMax" value="#{categoriaBean.categoria.faixaMax}" >
+            <f:selectItem itemLabel="Selecione a Faixa" itemValue="0" />
+            <f:selectItem itemLabel="Branca" itemValue="1" />
+            <f:selectItem itemLabel="Amarela" itemValue="2" />
+            <f:selectItem itemLabel="Vermelha" itemValue="3" />
+            <f:selectItem itemLabel="Laranja" itemValue="4" />
+            <f:selectItem itemLabel="Verde" itemValue="5" />
+            <f:selectItem itemLabel="Roxa" itemValue="6" />
+            <f:selectItem itemLabel="Marrom" itemValue="7" />
+            <f:selectItem itemLabel="Preta" itemValue="8" />
         </p:selectOneMenu>
         <h:outputLabel  value="Idade Minima: "></h:outputLabel>
         <h:inputText id="idadeMin" value="#{categoriaBean.categoria.min}"></h:inputText>
@@ -70,21 +82,40 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="Faixa" >
+					<p:column headerText="De Faixa" >
 							<p:cellEditor>
 					        <f:facet name="output">
-								<p:outputLabel value="#{Ca.faixa}"></p:outputLabel>
+								<p:outputLabel value="#{Ca.faixaMin}"></p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
-							        <p:selectOneMenu id="compe" value="#{Ca.faixa}" >
-                                    <f:selectItem itemLabel="Branca" itemValue="Branca" />
-                                    <f:selectItem itemLabel="Amarela" itemValue="Amarela" />
-                                    <f:selectItem itemLabel="Vermelha" itemValue="Vermelha" />
-                                    <f:selectItem itemLabel="Laranja" itemValue="Laranja" />
-                                    <f:selectItem itemLabel="Verde" itemValue="Verde" />
-                                    <f:selectItem itemLabel="Roxo" itemValue="Roxo" />
-                                    <f:selectItem itemLabel="Marrom" itemValue="Marrom" />
-                                    <f:selectItem itemLabel="Preta" itemValue="Preta" />
+							        <p:selectOneMenu id="faxMin" value="#{Ca.faixaMin}" >
+                                    <f:selectItem itemLabel="Branca" itemValue="1" />
+                                    <f:selectItem itemLabel="Amarela" itemValue="2" />
+                                    <f:selectItem itemLabel="Vermelha" itemValue="3" />
+                                    <f:selectItem itemLabel="Laranja" itemValue="4" />
+                                    <f:selectItem itemLabel="Verde" itemValue="5" />
+                                    <f:selectItem itemLabel="Roxa" itemValue="6" />
+                                    <f:selectItem itemLabel="Marrom" itemValue="7" />
+                                    <f:selectItem itemLabel="Preta" itemValue="8" />
+                                    </p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Até Faixa" >
+							<p:cellEditor>
+					        <f:facet name="output">
+								<p:outputLabel value="#{Ca.faixaMax}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+							        <p:selectOneMenu id="faxMax" value="#{Ca.faixaMax}" >
+                                    <f:selectItem itemLabel="Branca" itemValue="1" />
+                                    <f:selectItem itemLabel="Amarela" itemValue="2" />
+                                    <f:selectItem itemLabel="Vermelha" itemValue="3" />
+                                    <f:selectItem itemLabel="Laranja" itemValue="4" />
+                                    <f:selectItem itemLabel="Verde" itemValue="5" />
+                                    <f:selectItem itemLabel="Roxa" itemValue="6" />
+                                    <f:selectItem itemLabel="Marrom" itemValue="7" />
+                                    <f:selectItem itemLabel="Preta" itemValue="8" />
                                     </p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>

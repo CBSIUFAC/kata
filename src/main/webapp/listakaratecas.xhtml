@@ -17,6 +17,10 @@
 					update=":formK" process="@this">
 
 				</p:commandButton>
+				<p:commandButton id="btnClassifica" value="Classificar" action="#{karatecaBean.classificador}"
+                 update=":tbKaratecas" process="@this">
+					
+                </p:commandButton>
 			</h:form>
 
 			<p:dialog widgetVar="dlgK" modal="true">
@@ -48,15 +52,15 @@
 						<h:outputLabel value="Faixa :"></h:outputLabel>
 						<p:selectOneMenu id="karateca"
 							value="#{karatecaBean.karateca.faixa}">
-							<f:selectItem itemLabel="Selecione a Faixa" itemValue="" />
-							<f:selectItem itemLabel="Branca" itemValue="Branca" />
-							<f:selectItem itemLabel="Amarela" itemValue="Amarela" />
-							<f:selectItem itemLabel="Vermelha" itemValue="Vermelha" />
-							<f:selectItem itemLabel="Laranja" itemValue="Laranja" />
-							<f:selectItem itemLabel="Verde" itemValue="Verde" />
-							<f:selectItem itemLabel="Roxo" itemValue="Roxo" />
-							<f:selectItem itemLabel="Marrom" itemValue="Marrom" />
-							<f:selectItem itemLabel="Preta" itemValue="Preta" />
+							<f:selectItem itemLabel="Selecione a Faixa" itemValue="0" />
+							<f:selectItem itemLabel="Branca" itemValue="1" />
+							<f:selectItem itemLabel="Amarela" itemValue="2" />
+							<f:selectItem itemLabel="Vermelha" itemValue="3" />
+							<f:selectItem itemLabel="Laranja" itemValue="4" />
+							<f:selectItem itemLabel="Verde" itemValue="5" />
+							<f:selectItem itemLabel="Roxa" itemValue="6" />
+							<f:selectItem itemLabel="Marrom" itemValue="7" />
+							<f:selectItem itemLabel="Preta" itemValue="8" />
 						</p:selectOneMenu>
 						<h:outputLabel value="Categoria: :"></h:outputLabel>
 						<p:selectOneMenu id="categoria"
@@ -138,14 +142,14 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:selectOneMenu id="karateca" value="#{k.faixa}">
-									<f:selectItem itemLabel="Branca" itemValue="Branca" />
-									<f:selectItem itemLabel="Amarela" itemValue="Amarela" />
-									<f:selectItem itemLabel="Vermelha" itemValue="Vermelha" />
-									<f:selectItem itemLabel="Laranja" itemValue="Laranja" />
-									<f:selectItem itemLabel="Verde" itemValue="Verde" />
-									<f:selectItem itemLabel="Roxo" itemValue="Roxo" />
-									<f:selectItem itemLabel="Marrom" itemValue="Marrom" />
-									<f:selectItem itemLabel="Preta" itemValue="Preta" />
+									<f:selectItem itemLabel="Branca" itemValue="1" />
+									<f:selectItem itemLabel="Amarela" itemValue="2" />
+									<f:selectItem itemLabel="Vermelha" itemValue="3" />
+									<f:selectItem itemLabel="Laranja" itemValue="4" />
+									<f:selectItem itemLabel="Verde" itemValue="5" />
+									<f:selectItem itemLabel="Roxa" itemValue="6" />
+									<f:selectItem itemLabel="Marrom" itemValue="7" />
+									<f:selectItem itemLabel="Preta" itemValue="8" />
 								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>

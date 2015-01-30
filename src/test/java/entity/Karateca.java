@@ -25,7 +25,7 @@ public class Karateca implements Serializable{
    @Column
    private char sexo;
    @Column
-   private String faixa;
+   private int faixa;
    @Column
    private int idade;
    @ManyToOne
@@ -65,10 +65,10 @@ public class Karateca implements Serializable{
   public void setSexo(char sexo) {
 	this.sexo = sexo;
   }
-  public String getFaixa() {
+  public int getFaixa() {
 	return faixa;
   }
-  public void setFaixa(String faixa) {
+  public void setFaixa(int faixa) {
 	this.faixa = faixa;
   }
   public void setCategoria(Categoria categoria) {
