@@ -12,12 +12,31 @@
 	<ui:define name="content">
 <h:body>
 <h:form>
-<p:commandButton id="btnCompeticao" value="Inserir" action="#{competicaoBean.prepararC}"
+<p:commandButton id="btnCompeticao" value="Criar Competição" action="#{competicaoBean.prepararC}"
 					onclick="PF('dlgC').show()" update=":formC"
 						process="@this">
 					
 </p:commandButton>
 </h:form>
+    <p:ring id="basic" value="#{competicaoBean.listaCompeticoes}" var="C">
+        <p:outputPanel  style="text-align: center;" layout="block" >
+        #{C.nomeEvento}
+        <br />  
+        <p:commandButton  update=":campDetail" icon="ui-icon-info" title="View" oncomplete="PF('campDialog').show();">
+        <f:setPropertyActionListener value="#{C}" target="#{competicaoBean.selectedC}" />
+            </p:commandButton>
+            </p:outputPanel>
+    </p:ring>
+    
+    <p:dialog header="Informações" widgetVar="campDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="270">
+        <p:outputPanel id="campDetail" style="text-align:center;" layout="block">
+            <p:panelGrid  columns="2" rendered="#{not empty competicaoBean.selectedC}" columnClasses="value">
+ 
+                <h:outputText value="Organizador: " />
+                <h:outputText value="#{competicaoBean.selectedC.organizador}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
 
 <p:dialog widgetVar="dlgC" modal="true">
 <h:form id="formC">
@@ -29,7 +48,7 @@
 		<p:outputLabel value="Data da Competição :" />
         <p:calendar id="mask" value="#{competicaoBean.competicao.data}" pattern="dd-MM-yyyy" mask="true" />
    </h:panelGrid>
-		<h:commandButton value="Inserir Competicao" action="#{competicaoBean.inserirCompeticao}"></h:commandButton>
+		<h:commandButton value="Criar Competição" action="#{competicaoBean.inserirCompeticao}"></h:commandButton>
 </h:form>
 </p:dialog>
 
@@ -41,7 +60,8 @@
 					rowsPerPageTemplate="5,10,15" filteredValue="#{competicaoBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{competicaoBean.atualizarCompeticao}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{competicaoBean.cancelarCompeticao}" update=":tbCompeticoes:msg"></p:ajax>
-					<p:column headerText="Id Evento" filterBy="#{C.idEvento}" filterMatchMode="contains">
+					
+					<p:column headerText="Id Competição">
 						<p:outputLabel value="#{C.idEvento}"></p:outputLabel>
 					</p:column>
 
@@ -65,6 +85,19 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
+
+					<p:column headerText="Data da Competição :" >	
+					  <p:cellEditor>	
+					     <f:facet name="output">			  
+                        <p:outputLabel value="#{C.data}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                        </p:outputLabel>
+                        </f:facet>
+                        <f:facet name="input">
+                        <p:calendar id="mask" value="#{competicaoBean.competicao.data}" pattern="dd-MM-yyyy" mask="true" />
+                        </f:facet>
+                        </p:cellEditor>
+                    </p:column>
 					<p:column headerText="Atualizar">
 						<p:rowEditor></p:rowEditor>
 					</p:column>

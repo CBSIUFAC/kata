@@ -13,24 +13,42 @@
 
 <div id="header">
     <ui:insert name="header">
+     <div id="shiroK">
+	     <ui:insert name="imagem">
+		   <p:graphicImage value="/imagens/shiro.png" ></p:graphicImage>
+	     </ui:insert>
+     </div>
+      <h:form >
     	<p:menubar>
-    		<p:submenu label="Sistema">
-    			<p:menuitem value="Listar Karatecas" url="listakaratecas.jsf"></p:menuitem>
-    			<p:menuitem value="Listar Dojos" url="listadojos.jsf"></p:menuitem>
-    			<p:menuitem value="Listar Katas" url="listakatas.jsf"></p:menuitem>
-    			<p:menuitem value="Listar Apresentaçoes" url="listaapresentacoes.jsf"></p:menuitem>
-    			<p:menuitem value="Listar Avaliações" url="listaavaliacoes.jsf"></p:menuitem>
-    			<p:menuitem value="Listar Juizes" url="listajuizes.jsf"></p:menuitem>
-    			<p:menuitem value="Listar Fases" url="listafases.jsf"></p:menuitem>
-    			<p:menuitem value="Listar Competições" url="listacompeticoes.jsf"></p:menuitem>
-    			<p:menuitem value="Lista Categorias" url="listacategorias.jsf"></p:menuitem>
+    		<p:submenu label="Ver Lista">
+    		    <p:menuitem value="Inicio" url="listacompeticoes.jsf"></p:menuitem>
+    		    <p:menuitem value="Categorias" url="listacategorias.jsf"></p:menuitem>
+    		    <p:menuitem value="Fases" url="listafases.jsf"></p:menuitem>		
+    			<p:menuitem value="Dojos" url="listadojos.jsf"></p:menuitem>
+    			<p:menuitem value="Karatecas" url="listakaratecas.jsf"></p:menuitem>
+    			<p:menuitem value="Katas" url="listakatas.jsf"></p:menuitem>
+    			<p:menuitem value="Juizes" url="listajuizes.jsf"></p:menuitem>
     			  <p:menuitem>
  				     <h:outputLink value="j_spring_security_logout">
 					 <h:outputText value="Sair" />
 			         </h:outputLink>
 				  </p:menuitem>
     		</p:submenu>
-    	</p:menubar>
+    		<p:submenu label="Processar">
+    			<p:menuitem value="Apresentaçoes" url="listaapresentacoes.jsf"></p:menuitem>
+    			<p:menuitem value="Avaliações" url="listaavaliacoes.jsf"></p:menuitem>
+    		</p:submenu>
+    		<p:submenu label="Relatorios">
+    			<p:menuitem value="Pontuações" url="relatorio_de_apresentacoes.jsf"></p:menuitem>
+    			<p:menuitem value="Participantes" url="relatorio_de_competidores.jsf"></p:menuitem>
+    		</p:submenu>
+    	    <p:menuitem value="Sair"  icon="ui-icon-close" >
+    	             <h:outputLink value="j_spring_security_logout">
+					 <h:outputText value="Sair" />
+			         </h:outputLink>
+		    </p:menuitem>
+    	 </p:menubar>
+    	</h:form>
     </ui:insert>
 </div>
 

@@ -66,4 +66,14 @@ public class CompeticaoBean {
 		FacesMessage msg = new FacesMessage("Edição Cancelada");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
+	//Serve para pegar o objeto de forma temporal, para mostrar informações
+	private Competicao selectedC;
+
+	public Competicao getSelectedC() {
+		return selectedC;
+	}
+
+	public void setSelectedC(Competicao selectedC) {
+		this.selectedC = selectedC;
+	}
 }
