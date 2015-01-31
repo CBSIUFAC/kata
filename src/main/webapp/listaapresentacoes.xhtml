@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -10,60 +10,75 @@
 </h:head>
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
-<h:body>
-<h:form>
-<p:commandButton id="btnApresenta" value="Inserir" action="#{apresentacaoBean.prepararAp}"
-					onclick="PF('dlgAp').show()" update=":formAp"
-						process="@this">
-</p:commandButton>
-</h:form>
-<h:form>
-<p:commandButton id="btnAtualiza" value="Atualizar Dados" action="#{apresentacaoBean.atualizaDado}" update=":tbApresentacoes"
-						process="@this">			
-</p:commandButton>
-</h:form>
+		<h:body>
+			<h:form>
+				<p:commandButton id="btnApresenta" value="Inserir"
+					action="#{apresentacaoBean.prepararAp}"
+					onclick="PF('dlgAp').show()" update=":formAp" process="@this">
+				</p:commandButton>
+			</h:form>
+			<h:form>
+				<p:commandButton id="btnAtualiza" value="Atualizar Dados"
+					action="#{apresentacaoBean.atualizaDado}" update=":tbApresentacoes"
+					process="@this">
+				</p:commandButton>
+			</h:form>
 
-<p:dialog widgetVar="dlgAp" modal="true">
-<h:form id="formAp">
-       <h:panelGrid columns="2" cellpadding="5">
-		<p:outputLabel value="Karateca"></p:outputLabel>
-		<p:selectOneMenu value="#{apresentacaoBean.apresentacao.karateca}" converter="karatecaConverter">
-		  <f:selectItems value="#{karatecaBean.listaKaratecas}" var="karat" itemLabel="#{karat.nome}" itemValue="#{karat}"></f:selectItems>
-		</p:selectOneMenu>
-		<h:outputLabel value="Selecionar Kata:"></h:outputLabel>
-		<p:selectOneMenu value="#{apresentacaoBean.apresentacao.kata}" converter="kataConverter">
-		<f:selectItems value="#{kataBean.listaKatas}" var="kata" itemLabel="#{kata.nomeKata}" itemValue="#{kata}"></f:selectItems>
-		</p:selectOneMenu>
-		<h:outputLabel value="Selecionar Fase:"></h:outputLabel>
-		<p:selectOneMenu value="#{apresentacaoBean.apresentacao.fase}" converter="faseConverter">
-		<f:selectItems value="#{faseBean.listaFases}" var="fase" itemLabel="#{fase.nomeFase}" itemValue="#{fase}"></f:selectItems>
-		</p:selectOneMenu>
-		</h:panelGrid>
-		<h:commandButton value="Inserir Apresentacao" action="#{apresentacaoBean.inserirApresentacao}"></h:commandButton>
-</h:form>
-</p:dialog>
-    <h:form id="tbApresentacoes">
-       <p:growl id="msg" showDetail="true"></p:growl>
-           <p:dataTable var="A" id="apresenta" value="#{apresentacaoBean.listaApresentacoes}" rows="5"
-					editable="true" paginator="true" 
+			<p:dialog widgetVar="dlgAp" modal="true">
+				<h:form id="formAp">
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel value="Karateca"></p:outputLabel>
+						<p:selectOneMenu value="#{apresentacaoBean.apresentacao.karateca}"
+							converter="karatecaConverter">
+							<f:selectItems value="#{karatecaBean.listaKaratecas}" var="karat"
+								itemLabel="#{karat.nome}" itemValue="#{karat}"></f:selectItems>
+						</p:selectOneMenu>
+						<h:outputLabel value="Selecionar Kata:"></h:outputLabel>
+						<p:selectOneMenu value="#{apresentacaoBean.apresentacao.kata}"
+							converter="kataConverter">
+							<f:selectItems value="#{kataBean.listaKatas}" var="kata"
+								itemLabel="#{kata.nomeKata}" itemValue="#{kata}"></f:selectItems>
+						</p:selectOneMenu>
+						<h:outputLabel value="Selecionar Fase:"></h:outputLabel>
+						<p:selectOneMenu value="#{apresentacaoBean.apresentacao.fase}"
+							converter="faseConverter">
+							<f:selectItems value="#{faseBean.listaFases}" var="fase"
+								itemLabel="#{fase.nomeFase}" itemValue="#{fase}"></f:selectItems>
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<h:commandButton value="Inserir Apresentacao"
+						action="#{apresentacaoBean.inserirApresentacao}"></h:commandButton>
+				</h:form>
+			</p:dialog>
+			<h:form id="tbApresentacoes">
+				<p:growl id="msg" showDetail="true"></p:growl>
+				<p:dataTable var="A" id="apresenta"
+					value="#{apresentacaoBean.listaApresentacoes}" rows="5"
+					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15" filteredValue="#{apresentacaoBean.filtroLista}">
-					<p:ajax event="rowEdit" listener="#{apresentacaoBean.atualizarApresentacao}"></p:ajax>
-					<p:ajax event="rowEditCancel" listener="#{apresentacaoBean.cancelarApresentacao}" update=":tbApresentacoes:msg"></p:ajax>
-					<p:column headerText="Numero da Apresentacao" filterBy="#{A.idApresenta}" filterMatchMode="contains">
+					rowsPerPageTemplate="5,10,15"
+					filteredValue="#{apresentacaoBean.filtroLista}">
+					<p:ajax event="rowEdit"
+						listener="#{apresentacaoBean.atualizarApresentacao}"></p:ajax>
+					<p:ajax event="rowEditCancel"
+						listener="#{apresentacaoBean.cancelarApresentacao}"
+						update=":tbApresentacoes:msg"></p:ajax>
+					<p:column headerText="Numero da Apresentacao"
+						filterBy="#{A.idApresenta}" filterMatchMode="contains">
 						<p:outputLabel value="#{A.idApresenta}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Karateca">
 						<p:outputLabel value="#{A.karateca.nome}"></p:outputLabel>
 					</p:column>
 
-					<p:column headerText="Pontuação" filterBy="#{A.pontuacao}" filterMatchMode="contains" >
-					    <p:cellEditor>
-					        <f:facet name="output">
+					<p:column headerText="Pontuação" filterBy="#{A.pontuacao}"
+						filterMatchMode="contains">
+						<p:cellEditor>
+							<f:facet name="output">
 								<p:outputLabel id="media" value="#{A.pontuacao}"></p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
-							  <p:inputText value="#{A.pontuacao}"></p:inputText>
+								<p:inputText value="#{A.pontuacao}"></p:inputText>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -78,17 +93,10 @@
 						</h:commandLink>
 					</p:column>
 				</p:dataTable>
-
-
-				<h3>Gerar Pdf</h3>
- 
-    <h:commandLink>
-        <p:graphicImage value="/imagens/pdf.png" />
-        <p:dataExporter type="pdf" target="apresenta" fileName="lista de competições" pageOnly="true" />
-    </h:commandLink>
- 
-	</h:form>
-</h:body>
+				<p:button outcome="relatorio_de_apresentacoes.xhtml" target="_blank"
+					value="Gerar Relatório"></p:button>
+			</h:form>
+		</h:body>
 	</ui:define>
 </ui:composition>
 </html>

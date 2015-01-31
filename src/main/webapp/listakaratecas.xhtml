@@ -17,10 +17,11 @@
 					update=":formK" process="@this">
 
 				</p:commandButton>
-				<p:commandButton id="btnClassifica" value="Classificar" action="#{karatecaBean.classificador}"
-                 update=":tbKaratecas" process="@this">
-					
-                </p:commandButton>
+				<p:commandButton id="btnClassifica" value="Classificar"
+					action="#{karatecaBean.classificador}" update=":tbKaratecas"
+					process="@this">
+
+				</p:commandButton>
 			</h:form>
 
 			<p:dialog widgetVar="dlgK" modal="true">
@@ -105,31 +106,31 @@
 						</p:cellEditor>
 					</p:column>
 					<p:column headerText="Sexo">
-					<p:cellEditor>
-					<f:facet name="output">
-						<p:outputLabel value="#{k.sexo}"></p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-						<p:selectOneMenu id="sexo" value="#{karatecaBean.karateca.sexo}"
-							required="M">
-							<f:selectItem itemLabel="Masculino" itemValue="M" />
-							<f:selectItem itemLabel="Feminino" itemValue="F" />
-						</p:selectOneMenu>
-						</f:facet>
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{k.sexo}"></p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu id="sexo" value="#{karatecaBean.karateca.sexo}"
+									required="M">
+									<f:selectItem itemLabel="Masculino" itemValue="M" />
+									<f:selectItem itemLabel="Feminino" itemValue="F" />
+								</p:selectOneMenu>
+							</f:facet>
 						</p:cellEditor>
 					</p:column>
 					<p:column headerText="Data de Nascimento">
-					<p:cellEditor>
-					<f:facet name="output">
-						<p:outputLabel value="#{k.dataNasc}">
-							<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-						</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-						<p:calendar id="german" value="#{k.dataNasc}"
-							mindate="21-01-1900" maxdate="21-01-10" locale="pt_BR"
-							navigator="true" pattern="dd-MM-yyyy" required="true" />
-						</f:facet>
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{k.dataNasc}">
+									<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar id="german" value="#{k.dataNasc}"
+									mindate="21-01-1900" maxdate="21-01-10" locale="pt_BR"
+									navigator="true" pattern="dd-MM-yyyy" required="true" />
+							</f:facet>
 						</p:cellEditor>
 					</p:column>
 					<p:column headerText="Idade:">
@@ -180,6 +181,8 @@
 						</h:commandLink>
 					</p:column>
 				</p:dataTable>
+				<p:button outcome="relatorio_de_competidores.xhtml" target="_blank"
+					value="Gerar Relatório"></p:button>
 			</h:form>
 		</h:body>
 	</ui:define>

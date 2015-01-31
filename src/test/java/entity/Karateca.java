@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -34,7 +35,7 @@ public class Karateca implements Serializable{
    @ManyToOne
    @JoinColumn(referencedColumnName="idCategoria",name="fkCategoria")
    private Categoria categoria;
-   @OneToMany(mappedBy="karateca")
+   @OneToMany(mappedBy="karateca", fetch = FetchType.EAGER)
    private List<Apresentacao> apresentacao;
    public List<Apresentacao> getApresentacao() {
 		return apresentacao;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<head>
+<title>Relatório de Competidores</title>
+</head>
+<ui:composition template="/template/simples.xhtml">
+	<ui:define name="content">
+		<body>
+			<h:form id="tbKaratecas">
+				<p:dataTable var="karat" id="Karatecas"
+					value="#{karatecaBean.listaKaratecas}">
+					<p:column headerText="CPF">
+						<h:outputText value="#{karat.cpf}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{karat.nome}" />
+					</p:column>
+					<p:column headerText="Idade">
+						<h:outputText value="#{karat.idade}" />
+					</p:column>
+					<p:column headerText="Categoria">
+						<p:outputLabel  value="#{karat.categoria.nome}"> </p:outputLabel> 
+					</p:column>
+
+
+
+					<p:column headerText="Dojo">
+						<h:outputText value="#{karat.dojo.nomeDojo}" />
+					</p:column>
+
+				</p:dataTable>
+				<h3>Exportar Relatório</h3>
+
+				<h:commandLink>
+					<p:graphicImage value="/imagens/pdf.png" width="40" />
+					<p:dataExporter type="pdf" target="Karatecas"
+						fileName="lista de competidores" pageOnly="true" />
+				</h:commandLink>
+				<h:commandLink>
+					<p:graphicImage value="/imagens/xls.png" width="40" />
+					<p:dataExporter type="xls" target="Karatecas"
+						fileName="lista de competidores" pageOnly="true" />
+				</h:commandLink>
+			</h:form>
+		</body>
+	</ui:define>
+</ui:composition>
+</html>
