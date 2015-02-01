@@ -20,19 +20,15 @@
      </div>
       <h:form >
     	<p:menubar>
-    		<p:submenu label="Ver Lista">
+    		<p:submenu label="Exibir">
     		    <p:menuitem value="Inicio" url="listacompeticoes.jsf"></p:menuitem>
     		    <p:menuitem value="Categorias" url="listacategorias.jsf"></p:menuitem>
     		    <p:menuitem value="Fases" url="listafases.jsf"></p:menuitem>		
     			<p:menuitem value="Dojos" url="listadojos.jsf"></p:menuitem>
+    			<p:separator />
     			<p:menuitem value="Karatecas" url="listakaratecas.jsf"></p:menuitem>
     			<p:menuitem value="Katas" url="listakatas.jsf"></p:menuitem>
     			<p:menuitem value="Juizes" url="listajuizes.jsf"></p:menuitem>
-    			  <p:menuitem>
- 				     <h:outputLink value="j_spring_security_logout">
-					 <h:outputText value="Sair" />
-			         </h:outputLink>
-				  </p:menuitem>
     		</p:submenu>
     		<p:submenu label="Processar">
     			<p:menuitem value="Apresentaçoes" url="listaapresentacoes.jsf"></p:menuitem>
@@ -42,11 +38,11 @@
     			<p:menuitem value="Pontuações" url="relatorio_de_apresentacoes.jsf"></p:menuitem>
     			<p:menuitem value="Participantes" url="relatorio_de_competidores.jsf"></p:menuitem>
     		</p:submenu>
-    	    <p:menuitem value="Sair"  icon="ui-icon-close" >
-    	             <h:outputLink value="j_spring_security_logout">
-					 <h:outputText value="Sair" />
-			         </h:outputLink>
-		    </p:menuitem>
+    	   <f:facet name="options">
+            <h:outputLink value="j_spring_security_logout">
+            <p:commandButton type="button" value="Sair" icon="ui-icon-extlink" />
+            </h:outputLink>
+           </f:facet>
     	 </p:menubar>
     	</h:form>
     </ui:insert>

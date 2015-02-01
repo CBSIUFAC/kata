@@ -81,7 +81,7 @@
 
 			<h:form id="tbKaratecas">
 				<p:growl id="msg" showDetail="true"></p:growl>
-				<p:dataTable var="k" value="#{karatecaBean.listaKaratecas}"
+				<p:dataTable id ="kartcs"  var="k" value="#{karatecaBean.listaKaratecas}"
 					rows="21" editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15,21"
@@ -91,6 +91,11 @@
 					<p:ajax event="rowEditCancel"
 						listener="#{karatecaBean.cancelarKarateca}"
 						update=":tbKaratecas:msg"></p:ajax>
+		    <f:facet name="header">
+               Lista de Karatecas
+              <p:commandButton id="toggler" type="button" value="Mostrar Colunas" style="float:right" icon="ui-icon-calculator" />
+              <p:columnToggler datasource="kartcs" trigger="toggler" />
+            </f:facet> 
 					<p:column headerText="CPF" filterBy="#{k.cpf}"
 						filterMatchMode="contains">
 						<p:outputLabel value="#{k.cpf}"></p:outputLabel>
