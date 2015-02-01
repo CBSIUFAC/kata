@@ -50,7 +50,7 @@
 			</p:dialog>
 			<h:form id="tbApresentacoes">
 				<p:growl id="msg" showDetail="true"></p:growl>
-				<p:dataTable var="A" id="apresenta"
+				<p:dataTable var="A" id="apresenta"  widgetVar="ApresentTB"
 					value="#{apresentacaoBean.listaApresentacoes}" rows="5"
 					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -65,7 +65,14 @@
 						filterBy="#{A.idApresenta}" filterMatchMode="contains">
 						<p:outputLabel value="#{A.idApresenta}"></p:outputLabel>
 					</p:column>
-					<p:column headerText="Categoria">
+					<ui:remove> A seguinte coluna faz o filtro de acordo com a lista de categorias</ui:remove>
+					<p:column headerText="Categoria"  filterBy="#{A.karateca.categoria.nome}" filterMatchMode="exact">
+					    <f:facet name="filter">
+                          <p:selectOneMenu onchange="PF('ApresentTB').filter()" >
+                         <f:selectItem itemLabel="Busca por" itemValue="#{null}" noSelectionOption="true" />
+                         <f:selectItems value="#{categoriaBean.listaCategorias}" var="cat" itemLabel="#{cat.nome}"  itemValue="#{cat.nome}"/>
+                          </p:selectOneMenu>
+                        </f:facet>
 						<p:outputLabel value="#{A.karateca.categoria.nome}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Fase">

@@ -38,14 +38,20 @@
 </p:dialog>
     <h:form id="tbAvaliacoes">
        <p:growl id="msg" showDetail="true"></p:growl>
-           <p:dataTable var="A" value="#{avaliacaoBean.listaAvaliacao}" rows="5"
+           <p:dataTable widgetVar="avaliaTBL" var="A" value="#{avaliacaoBean.listaAvaliacao}" rows="5"
 					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" filteredValue="#{avaliacaoBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{avalaicaoBean.atualizarAvaliacao}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{avaliacaoBean.cancelarAvaliacao}" update=":tbAvaliacoes:msg"></p:ajax>
-					
-					<p:column headerText="Id da Avaliação" filterBy="#{A.idAvalia}" filterMatchMode="contains">
+					<ui:remove> O seguinte bloco serve para fazer o filtro de forma global </ui:remove>
+					  <f:facet name="header">
+                       <p:outputPanel>
+                       <h:outputText value="Procurar por:" />
+                       <p:inputText id="globalFilter" onkeyup="PF('avaliaTBL').filter()" style="width:150px" placeholder="Palavra Chave"/>
+                       </p:outputPanel>
+                      </f:facet>
+					<p:column headerText="Id da Avaliação">
 						<p:outputLabel value="#{A.idAvalia}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Apresento" filterBy="#{A.apresentacao.nomeApresenta}" filterMatchMode="contains">
