@@ -12,9 +12,9 @@
 	<ui:define name="content">
 <h:body>
 <h:form>
-<p:commandButton id="btnAva" value="Inserir" action="#{avaliacaoBean.prepararA}"
+<p:commandButton id="btnAva" value="Inserir Nota" action="#{avaliacaoBean.prepararA}"
 					onclick="PF('dlgA').show()" update=":formA"
-						process="@this">
+						process="@this" ico="ui-icon-plusthick">
 					
 </p:commandButton>
 </h:form>
@@ -44,8 +44,15 @@
 					rowsPerPageTemplate="5,10,15" filteredValue="#{avaliacaoBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{avalaicaoBean.atualizarAvaliacao}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{avaliacaoBean.cancelarAvaliacao}" update=":tbAvaliacoes:msg"></p:ajax>
+					
 					<p:column headerText="Id da Avaliação" filterBy="#{A.idAvalia}" filterMatchMode="contains">
 						<p:outputLabel value="#{A.idAvalia}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Apresento" filterBy="#{A.apresentacao.nomeApresenta}" filterMatchMode="contains">
+						<p:outputLabel value="#{A.apresentacao.nomeApresenta}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Juiz da Nota">
+						<p:outputLabel value="#{A.juiz.nome}"></p:outputLabel>
 					</p:column>
 
 					<p:column headerText="Nota" filterBy="#{A.nota}" filterMatchMode="contains" >

@@ -12,9 +12,9 @@
 	<ui:define name="content">
 <h:body>
   <h:form>
-<p:commandButton id="btnDojo" value="Inserir" action="#{dojoBean.prepararD}"
+<p:commandButton id="btnDojo" value="Novo Dojo" action="#{dojoBean.prepararD}"
 					onclick="PF('dlgD').show()" update=":formD"
-						process="@this">
+						process="@this" icon="ui-icon-plusthick">
 					
 </p:commandButton>
 </h:form>
@@ -22,7 +22,7 @@
 <p:dialog widgetVar="dlgD" modal="true">
 <h:form id="formD">
 <h:panelGrid columns="2" cellpadding="5">
-		<h:outputLabel value="Descrição:"></h:outputLabel>
+		<h:outputLabel value="Dojo:"></h:outputLabel>
 		<h:inputText value="#{dojoBean.dojo.nomeDojo}"></h:inputText>
 </h:panelGrid>
 		<h:commandButton value="Inserir Dojo" action="#{dojoBean.inserirDojo}"></h:commandButton>

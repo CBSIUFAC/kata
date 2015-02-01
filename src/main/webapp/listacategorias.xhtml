@@ -9,9 +9,9 @@
 	<ui:define name="content">
 <h:body>
 <h:form>
-<p:commandButton id="btnCatgeoria" value="Inserir" action="#{categoriaBean.prepararCa}"
+<p:commandButton id="btnCatgeoria" value="Nova Categoria" action="#{categoriaBean.prepararCa}"
 					onclick="PF('dlgCa').show()" update=":formCa"
-						process="@this">
+						process="@this" icon="ui-icon-plusthick">
 					
 </p:commandButton>
 </h:form>
@@ -66,9 +66,7 @@
 					rowsPerPageTemplate="10,15" filteredValue="#{categoriaBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{categoriaBean.atualizarCategoria}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{categoriaBean.cancelarCategoria}" update=":tbCategorias:msg"></p:ajax>
-					<p:column headerText="Id " filterBy="#{Ca.idCategoria}" filterMatchMode="contains">
-						<p:outputLabel value="#{Ca.idCategoria}"></p:outputLabel>
-					</p:column>
+                     
                      <p:column headerText="Campeonato" >
 								<p:outputLabel value="#{Ca.competicao.nomeEvento}"></p:outputLabel>
 					</p:column>
@@ -120,7 +118,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="Idade Minima:">
+					<p:column headerText="Idade_Min">
 					  <p:cellEditor>
 					   <f:facet name="output">
 		               <h:outputLabel value="#{Ca.min}"></h:outputLabel>
@@ -130,7 +128,7 @@
 		               </f:facet>
 		               </p:cellEditor>
 		            </p:column>
-		            <p:column headerText="Idade Max:">
+		            <p:column headerText="Idade_Max">
 		               <p:cellEditor>
 					   <f:facet name="output">
 		               <h:outputLabel value="#{Ca.max}"></h:outputLabel>

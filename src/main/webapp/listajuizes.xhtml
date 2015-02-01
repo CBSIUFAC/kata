@@ -12,9 +12,9 @@
 	<ui:define name="content">
 <h:body>
 <h:form>
-<p:commandButton id="btnJuiz" value="Inserir" action="#{juizBean.prepararJ}"
+<p:commandButton id="btnJuiz" value="Novo Juiz" action="#{juizBean.prepararJ}"
 					onclick="PF('dlgJ').show()" update=":formJ"
-						process="@this">
+						process="@this"  icon="ui-icon-plusthick">
 					
 </p:commandButton>
 </h:form>

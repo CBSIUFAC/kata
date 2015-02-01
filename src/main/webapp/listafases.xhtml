@@ -12,9 +12,9 @@
 	<ui:define name="content">
 <h:body>
 <h:form>
-<p:commandButton id="btnFase" value="Inserir" action="#{faseBean.prepararF}"
+<p:commandButton id="btnFase" value="Nova Fase" action="#{faseBean.prepararF}"
 					onclick="PF('dlgF').show()" update=":formF"
-						process="@this">
+						process="@this"  icon="ui-icon-plusthick">
 					
 </p:commandButton>
 </h:form>
@@ -22,10 +22,16 @@
 <p:dialog widgetVar="dlgF" modal="true">
 <h:form id="formF">
 <h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Competição:"></h:outputLabel>
+		<p:selectOneListbox id="basic" value="#{faseBean.fase.competicao}" converter="competicaoConverter">
+            <f:selectItems value="#{competicaoBean.listaCompeticoes}" var="comp"
+								itemLabel="#{comp.nomeEvento}" itemValue="#{comp}"/>
+        </p:selectOneListbox>
 		<h:outputLabel value="Descrição:"></h:outputLabel>
 		<h:inputText value="#{faseBean.fase.nomeFase}"></h:inputText>
 		</h:panelGrid>
-		<h:commandButton value="Inserir Fase" action="#{faseBean.inserirFase}"></h:commandButton>
+		
+		<h:commandButton value="Criar Fase" action="#{faseBean.inserirFase}"></h:commandButton>
 </h:form>
 </p:dialog>
     <h:form id="tbFases">
@@ -36,8 +42,8 @@
 					rowsPerPageTemplate="5,10,15" filteredValue="#{faseBean.filtroLista}">
 					<p:ajax event="rowEdit" listener="#{faseBean.atualizarFase}"></p:ajax>
 					<p:ajax event="rowEditCancel" listener="#{faseBean.cancelarFase}" update=":tbFases:msg"></p:ajax>
-					<p:column headerText="Id da Fase" filterBy="#{F.idFase}" filterMatchMode="contains">
-						<p:outputLabel value="#{F.idFase}"></p:outputLabel>
+					<p:column headerText="Competição">
+						<p:outputLabel value="#{F.competicao.nomeEvento}"></p:outputLabel>
 					</p:column>
 
 					<p:column headerText="Tipo de Fase" filterBy="#{F.nomeFase}" filterMatchMode="contains" >

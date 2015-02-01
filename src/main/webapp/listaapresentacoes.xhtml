@@ -12,15 +12,13 @@
 	<ui:define name="content">
 		<h:body>
 			<h:form>
-				<p:commandButton id="btnApresenta" value="Inserir"
+				<p:commandButton id="btnApresenta" value="Nova Apresentação"
 					action="#{apresentacaoBean.prepararAp}"
-					onclick="PF('dlgAp').show()" update=":formAp" process="@this">
+					onclick="PF('dlgAp').show()" update=":formAp" process="@this"  icon="ui-icon-plusthick">
 				</p:commandButton>
-			</h:form>
-			<h:form>
-				<p:commandButton id="btnAtualiza" value="Atualizar Dados"
+				<p:commandButton id="btnAtualiza" value="Processar Notas"
 					action="#{apresentacaoBean.atualizaDado}" update=":tbApresentacoes"
-					process="@this">
+					process="@this" icon="ui-icon-calculator">
 				</p:commandButton>
 			</h:form>
 
@@ -67,23 +65,20 @@
 						filterBy="#{A.idApresenta}" filterMatchMode="contains">
 						<p:outputLabel value="#{A.idApresenta}"></p:outputLabel>
 					</p:column>
+					<p:column headerText="Categoria">
+						<p:outputLabel value="#{A.karateca.categoria.nome}"></p:outputLabel>
+					</p:column>
+					<p:column headerText="Fase">
+						<p:outputLabel value="#{A.fase.nomeFase}"></p:outputLabel>
+					</p:column>
 					<p:column headerText="Karateca">
 						<p:outputLabel value="#{A.karateca.nome}"></p:outputLabel>
 					</p:column>
-
-					<p:column headerText="Pontuação" filterBy="#{A.pontuacao}"
-						filterMatchMode="contains">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel id="media" value="#{A.pontuacao}"></p:outputLabel>
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{A.pontuacao}"></p:inputText>
-							</f:facet>
-						</p:cellEditor>
+                    <p:column headerText="Kata">
+						<p:outputLabel value="#{A.kata.nomeKata}"></p:outputLabel>
 					</p:column>
-					<p:column headerText="Atualizar">
-						<p:rowEditor></p:rowEditor>
+					<p:column headerText="Pontuação">
+								<p:outputLabel id="media" value="#{A.pontuacao}"></p:outputLabel>
 					</p:column>
 					<p:column headerText="Deletar">
 						<h:commandLink action="#{apresentacaoBean.deletarApresentacao}">

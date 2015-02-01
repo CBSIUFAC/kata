@@ -12,16 +12,18 @@
 	<ui:define name="content">
 		<h:body>
 			<h:form>
-				<p:commandButton id="btnKarateca" value="Inserir"
+				<p:commandButton id="btnKarateca" value="Novo Karateca"
 					action="#{karatecaBean.prepararK}" onclick="PF('dlgK').show()"
-					update=":formK" process="@this">
+					update=":formK" process="@this" icon="ui-icon-plusthick">
 
 				</p:commandButton>
 				<p:commandButton id="btnClassifica" value="Classificar"
 					action="#{karatecaBean.classificador}" update=":tbKaratecas"
-					process="@this">
+					process="@this" icon="ui-icon-shuffle">
 
 				</p:commandButton>
+				<p:button outcome="relatorio_de_competidores.xhtml" target="_blank"
+					value="Gerar Relatório" icon="ui-icon-document"></p:button>
 			</h:form>
 
 			<p:dialog widgetVar="dlgK" modal="true">
@@ -72,7 +74,7 @@
 								itemLabel="#{cat.nome}" itemValue="#{cat}"></f:selectItems>
 						</p:selectOneMenu>
 					</h:panelGrid>
-					<h:commandButton value="Inserir K"
+					<h:commandButton value="Inserir Karateca"
 						action="#{karatecaBean.inserirKarateca}"></h:commandButton>
 				</h:form>
 			</p:dialog>
@@ -80,9 +82,9 @@
 			<h:form id="tbKaratecas">
 				<p:growl id="msg" showDetail="true"></p:growl>
 				<p:dataTable var="k" value="#{karatecaBean.listaKaratecas}"
-					rows="15" editable="true" paginator="true"
+					rows="21" editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-					rowsPerPageTemplate="5,10,15"
+					rowsPerPageTemplate="5,10,15,21"
 					filteredValue="#{karatecaBean.filtroLista}">
 					<p:ajax event="rowEdit"
 						listener="#{karatecaBean.atualizarKarateca}"></p:ajax>
@@ -105,6 +107,9 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
+					<p:column headerText="Categoria">
+					     <p:outputLabel value="#{k.categoria.nome}"></p:outputLabel>
+					</p:column>
 					<p:column headerText="Sexo">
 						<p:cellEditor>
 							<f:facet name="output">
@@ -118,23 +123,6 @@
 								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Data de Nascimento">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel value="#{k.dataNasc}">
-									<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-								</p:outputLabel>
-							</f:facet>
-							<f:facet name="input">
-								<p:calendar id="german" value="#{k.dataNasc}"
-									mindate="21-01-1900" maxdate="21-01-10" locale="pt_BR"
-									navigator="true" pattern="dd-MM-yyyy" required="true" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="Idade:">
-						<h:outputLabel value="#{k.idade}"></h:outputLabel>
 					</p:column>
 					<p:column headerText="Faixa">
 						<p:cellEditor>
@@ -154,6 +142,23 @@
 								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Data de Nascimento">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{k.dataNasc}">
+									<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar id="german" value="#{k.dataNasc}"
+									mindate="21-01-1900" maxdate="21-01-10" locale="pt_BR"
+									navigator="true" pattern="dd-MM-yyyy" required="true" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="Idade">
+						<h:outputLabel value="#{k.idade}"></h:outputLabel>
 					</p:column>
 					<p:column headerText="Dojo">
 						<p:cellEditor>
@@ -181,8 +186,6 @@
 						</h:commandLink>
 					</p:column>
 				</p:dataTable>
-				<p:button outcome="relatorio_de_competidores.xhtml" target="_blank"
-					value="Gerar Relatório"></p:button>
 			</h:form>
 		</h:body>
 	</ui:define>
