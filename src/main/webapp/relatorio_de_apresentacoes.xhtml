@@ -13,17 +13,17 @@
 <ui:define name="content">
 <body>
 <h:form id="tbApresenta">
-	<p:dataTable var="apresenta" id="Apresentacoes" value="#{apresentacaoBean.listaApresentacoes}">
+	<p:dataTable var="apresenta" id="Apresentacoes" value="#{apresentacaoBean.listaApresentacoes}" style="margin-bottom:40px">
 		<p:column headerText="ID">
 			<h:outputText value="#{apresenta.idApresenta}" />
 		</p:column>
-		<p:column headerText="Nome do Karateca">
+		<p:column headerText="Nome do Karateca" sortBy="#{apresenta.karateca.nome}">
 			<h:outputText value="#{apresenta.karateca.nome}" />
 		</p:column>
-		<p:column headerText="Nome da Kata">
+		<p:column headerText="Nome da Kata" sortBy="#{apresenta.kata.nomeKata}">
 			<h:outputText value="#{apresenta.kata.nomeKata}" />
 		</p:column>
-		<p:column headerText="Pontuação">
+		<p:column headerText="Pontuação" sortBy="#{apresenta.pontuacao}">
 			<h:outputText value="#{apresenta.pontuacao}" />
 		</p:column>
 	</p:dataTable>
