@@ -16,9 +16,13 @@ import entity.Usuario;
 @SessionScoped
 public class UsuarioFace {
 	UsuarioDAO usuDAO = new UsuarioDAO();
-	Usuario usu = new Usuario();
-	
+	Usuario usu;
+	 public void prepararUsu(){
+		 usu = new Usuario();
+	 }
 	public Usuario getUsu() {
+		if(usu == null)
+			usu = new Usuario();
 		return usu;
 	}
 	public void setUsu(Usuario usu) {

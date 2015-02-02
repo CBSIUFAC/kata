@@ -9,7 +9,7 @@
 <h:body>
 	<h:form>
 		<p:commandButton id="showDialogButton" value="Adicionar Usuário"
-			onclick="PF('dlgUsu').show()" 
+			onclick="PF('dlgUsu').show()"  action="#{faseBean.prepararF}"
 			update=":formUsuario:panelUsuario" process="@this">
 			<p:resetInput target=":formUsuario:panelUsuario" />
 		</p:commandButton>
@@ -22,7 +22,7 @@
     		</f:facet>
 			<p:dataTable id="tabelaUsu" var="usuItem"
 				filteredValue="#{usuarioFace.listaUsuario}"
-				value="#{usuarioFace.listaUsuario}" paginator="true" rows="5"
+				value="#{usuarioFace.listaUsuario}" paginator="true" rows="10"
 				emptyMessage="Tentar outro critério" editable="true" dynamic="true">
 
 				<p:ajax event="rowEdit"	listener="#{usuarioFace.atualizarUsuario}" update=":formUsu:messages"/>
@@ -45,7 +45,7 @@
   						action="#{usuarioFace.deletarUsuario}"
 						update=":formUsu:messages tabelaUsu" ajax="true">
 						<h:graphicImage alt="Deletar Usuario"
-							value="/imagens/update.png" style="border:0"/>
+							value="/imagens/delete.png" style="border:0"/>
 						<f:setPropertyActionListener target="#{usuarioFace.usu}"
 							value="#{usuItem}" for="linkDeletar" />
 					</p:commandLink>

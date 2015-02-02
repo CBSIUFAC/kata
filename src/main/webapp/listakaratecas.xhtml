@@ -65,6 +65,7 @@
 							<f:selectItem itemLabel="Marrom" itemValue="7" />
 							<f:selectItem itemLabel="Preta" itemValue="8" />
 						</p:selectOneMenu>
+						<ui:remove>
 						<h:outputLabel value="Categoria: :"></h:outputLabel>
 						<p:selectOneMenu id="categoria"
 							value="#{karatecaBean.karateca.categoria}"
@@ -73,6 +74,7 @@
 							<f:selectItems value="#{categoriaBean.listaCategorias}" var="cat"
 								itemLabel="#{cat.nome}" itemValue="#{cat}"></f:selectItems>
 						</p:selectOneMenu>
+						</ui:remove>
 					</h:panelGrid>
 					<h:commandButton value="Inserir Karateca"
 						action="#{karatecaBean.inserirKarateca}"></h:commandButton>

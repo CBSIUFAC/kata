@@ -12,11 +12,20 @@
 		<intercept-url pattern="/index.jsf" access="permitAll" />
 		<intercept-url pattern="/login.jsf" access="permitAll" />
 		<intercept-url pattern="/usuarios.jsf" access="permitAll" />
-		<intercept-url pattern="/marcas.jsf" access="isAuthenticated()" />
-		<intercept-url pattern="/categorias.jsf" access="hasRole('admin')" />
-		<form-login login-page="/login.jsf" default-target-url="/listamarcas.jsf"
+		<intercept-url pattern="/listacompeticoes.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listacategorias.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listadojos.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listakaratecas.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listafases.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listakatas.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listajuizes.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listaavaliacoes.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/listaapresentacoes.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/relatorio_de_apresentacoes.jsf" access="isAuthenticated()" />
+		<intercept-url pattern="/relatorio_de_competidores.jsf" access="isAuthenticated()" />
+		<form-login login-page="/login.jsf" default-target-url="/listacompeticoes.jsf"
 			authentication-failure-url="/login.jsf" />
-		<logout logout-success-url="/index.jsf" />
+		<logout logout-success-url="/login.jsf" />
 	</http>
 	
 	<authentication-manager alias="authenticationManager">
