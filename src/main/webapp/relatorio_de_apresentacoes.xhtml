@@ -15,21 +15,27 @@
 <h:form id="tbApresenta">
 	<p:dataTable var="apresenta" id="Apresentacoes" value="#{apresentacaoBean.listaApresentacoes}" style="margin-bottom:40px"
 	          filteredValue="#{apresentacaoBean.filtroLista}" widgetVar="ApresentTB">
-		<p:column headerText="ID">
-			<h:outputText value="#{apresenta.idApresenta}" />
-		</p:column>
 		<ui:remove> A seguinte coluna faz o filtro de acordo com a lista de categorias</ui:remove>
-		<p:column filterBy="#{apresenta.karateca.categoria.nome}" filterMatchMode="exact">
-		  <ui:remove>A seguinte coluna header facet serve para que no pdf ou no xls não sai o codgio do filtro
-		  olha que lá na colum eu tire o header</ui:remove>
+		<p:column filterBy="#{apresenta.competicao.nomeEvento}" filterMatchMode="exact">
 		  <f:facet name="header">
-		    <p:outputLabel value="Categorias"></p:outputLabel>
+		    <p:outputLabel value="Competição"></p:outputLabel>
 		  </f:facet>
 					    <f:facet name="filter">
                           <p:selectOneMenu onchange="PF('ApresentTB').filter()" >
                          <f:selectItem itemLabel="Busca por" itemValue="#{null}" noSelectionOption="true" />
-                         <f:selectItems value="#{categoriaBean.listaCategorias}" var="cat" itemLabel="#{cat.nome}"  itemValue="#{cat.nome}"/>
+                         <f:selectItems value="#{competicaoBean.listaCompeticoes}" var="comp" itemLabel="#{comp.nomeEvento}"  itemValue="#{comp.nomeEvento}"/>
                           </p:selectOneMenu>
+                        </f:facet>
+						<p:outputLabel value="#{apresenta.competicao.nomeEvento}"></p:outputLabel>
+					</p:column>
+		<p:column filterBy="#{apresenta.karateca.categoria.nome}" filterMatchMode="in">
+		  <f:facet name="header">
+		    <p:outputLabel value="Categorias"></p:outputLabel>
+		  </f:facet>
+					    <f:facet name="filter">
+                          <p:selectCheckboxMenu label="Check" onchange="PF('ApresentTB').filter()"  panelStyle="width:125px" scrollHeight="150">
+                         <f:selectItems value="#{categoriaBean.listaCategorias}" var="categ" itemLabel="#{categ.nome}"  itemValue="#{categ.nome}"/>
+                          </p:selectCheckboxMenu>
                         </f:facet>
 						<p:outputLabel value="#{apresenta.karateca.categoria.nome}"></p:outputLabel>
 					</p:column>
