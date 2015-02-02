@@ -1,5 +1,6 @@
 package manageBean;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -10,6 +11,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 
 import DAO.CompeticaoDAO;
+import entity.Apresentacao;
 import entity.Competicao;
 
 @ManagedBean(name="competicaoBean")
@@ -17,7 +19,7 @@ import entity.Competicao;
 public class CompeticaoBean {
      private Competicao competicao;
      private CompeticaoDAO competicaoDAO = new CompeticaoDAO();
-     
+     private int colocacao;
      public void prepararC(){
  		competicao = new Competicao();
  	}
@@ -36,7 +38,7 @@ public class CompeticaoBean {
   	public void setCompeticao(Competicao competicao) {
   		this.competicao = competicao;
   	}
-  	
+  	private List<Apresentacao> lista;
   	private List<Competicao> listaCompeticao=null;
   	private List<Competicao> filtroLista=null;
   	
@@ -76,4 +78,37 @@ public class CompeticaoBean {
 	public void setSelectedC(Competicao selectedC) {
 		this.selectedC = selectedC;
 	}
+	
+	public List<Apresentacao> getLista() {
+		List<Apresentacao> listaOrdenada = competicao.getApresentacao();
+		
+		Collections.sort(listaOrdenada);
+		
+		return listaOrdenada;
+	}
+
+	public CompeticaoDAO getCompeticaoDAO() {
+		return competicaoDAO;
+	}
+
+	public void setCompeticaoDAO(CompeticaoDAO competicaoDAO) {
+		this.competicaoDAO = competicaoDAO;
+	}
+
+	public List<Competicao> getListaCompeticao() {
+		return listaCompeticao;
+	}
+
+	public void setListaCompeticao(List<Competicao> listaCompeticao) {
+		this.listaCompeticao = listaCompeticao;
+	}
+
+	public void setLista(List<Apresentacao> lista) {
+		this.lista = lista;
+	}
+
+		public String getColocacao(){
+			colocacao++;
+			return colocacao+"ºColocado";
+		}
 }

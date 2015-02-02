@@ -25,6 +25,12 @@
 			<p:dialog widgetVar="dlgAp" modal="true">
 				<h:form id="formAp">
 					<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel value="Selecionar Competição:"></h:outputLabel>
+						<p:selectOneMenu value="#{apresentacaoBean.apresentacao.competicao}"
+							converter="competicaoConverter">
+							<f:selectItems value="#{competicaoBean.listaCompeticoes}" var="competicao"
+								itemLabel="#{competicao.nomeEvento}" itemValue="#{competicao}"></f:selectItems>
+						</p:selectOneMenu>
 						<p:outputLabel value="Karateca"></p:outputLabel>
 						<p:selectOneMenu value="#{apresentacaoBean.apresentacao.karateca}"
 							converter="karatecaConverter">

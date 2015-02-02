@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,17 +17,26 @@ public class Competicao {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idEvento;
 	@Column
-    private String nomeEvento;
+	private String nomeEvento;
 	@Column
-    private String organizador;
+	private String organizador;
 	@OneToMany(mappedBy="competicao")
-    private List<Categoria> categoria;
+	private List<Categoria> categoria;
 	@Column
-    private Date data;
+	private Date data;
 	@OneToMany(mappedBy="competicao")
-	  private List<Fase> fase;
+	private List<Fase> fase;
 	public int getIdEvento() {
 		return idEvento;
+	}
+	@OneToMany(mappedBy="competicao", fetch = FetchType.EAGER)
+	private List<Apresentacao> apresentacao;
+	
+	public List<Apresentacao> getApresentacao() {
+		return apresentacao;
+	}
+	public void setApresentacao(List<Apresentacao> apresentacao) {
+		this.apresentacao = apresentacao;
 	}
 	public void setIdEvento(int idEvento) {
 		this.idEvento = idEvento;
@@ -81,6 +91,6 @@ public class Competicao {
 	public void setCategoria(List<Categoria> categoria) {
 		this.categoria = categoria;
 	}
-	
-	
+
+
 }

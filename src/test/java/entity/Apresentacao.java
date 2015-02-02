@@ -16,7 +16,7 @@ import com.lowagie.toolbox.plugins.Concat;
 
 import manageBean.AvaliacaoBean;
 @Entity
-public class Apresentacao{
+public class Apresentacao implements Comparable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -43,6 +43,10 @@ public class Apresentacao{
 	private Kata kata;
     
     @ManyToOne
+    @JoinColumn(referencedColumnName="idEvento",name="fkCompeticao")
+    private Competicao competicao;
+   
+    @ManyToOne
    	@JoinColumn(referencedColumnName="idFase",name="fkFase")
    	private Fase fase;
     
@@ -52,6 +56,12 @@ public class Apresentacao{
     public int getIdApresenta() {
 		return idApresenta;
 		
+	}
+	public Competicao getCompeticao() {
+		return competicao;
+	}
+	public void setCompeticao(Competicao competicao) {
+		this.competicao = competicao;
 	}
 	public void setIdApresenta(int idApresenta) {
 		this.idApresenta = idApresenta;
@@ -106,5 +116,14 @@ public class Apresentacao{
 			return false;
 		return true;
 	}
+	public int compareTo(Object o) {
+		
+		Apresentacao apr = (Apresentacao) o;
+		
+		if(this.pontuacao > apr.getPontuacao()) return 1;
+		if(this.pontuacao < apr.getPontuacao()) return -1;
+		return 0;
+	}
+
     
 }
