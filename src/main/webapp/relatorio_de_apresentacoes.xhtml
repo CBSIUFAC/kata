@@ -26,7 +26,7 @@
                          <f:selectItems value="#{competicaoBean.listaCompeticoes}" var="comp" itemLabel="#{comp.nomeEvento}"  itemValue="#{comp.nomeEvento}"/>
                           </p:selectOneMenu>
                         </f:facet>
-						<p:outputLabel value="#{apresenta.competicao.nomeEvento}"></p:outputLabel>
+						<p:outputLabel value="#{apresenta.competicao.competicaoSel}"></p:outputLabel>
 					</p:column>
 		<p:column filterBy="#{apresenta.karateca.categoria.nome}" filterMatchMode="in">
 		  <f:facet name="header">

@@ -29,6 +29,14 @@ public class Competicao {
 	public int getIdEvento() {
 		return idEvento;
 	}
+	@Column
+	private String competicaoSel;
+	public String getCompeticaoSel() {
+		return competicaoSel;
+	}
+	public void setCompeticaoSel(String competicaoSel) {
+		this.competicaoSel = competicaoSel;
+	}
 	@OneToMany(mappedBy="competicao", fetch = FetchType.EAGER)
 	private List<Apresentacao> apresentacao;
 	

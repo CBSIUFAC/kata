@@ -22,7 +22,14 @@ import entity.Kata;
 @ManagedBean(name="apresentacaoBean")
 @SessionScoped
 public class ApresentacaoBean {
-	
+	private int colocacao;
+	public void setColocacao(int colocacao) {
+		this.colocacao = colocacao;
+	}
+	public String getColocacao(){
+		colocacao++;
+		return colocacao+"ºColocado";
+	}
 	private Apresentacao apresentacao;
 	private ApresentacaoDAO apresentacaoDAO = new ApresentacaoDAO();
 	ApresentacaoDAO apresentacaoDAO3 = new ApresentacaoDAO();
@@ -129,6 +136,6 @@ public class ApresentacaoBean {
 	
 	public String Concat(Apresentacao apresentacao){
 		
-		return apresentacao.getFase().getNomeFase().concat(" ").concat(apresentacao.getKata().getNomeKata().concat(" ")).concat(apresentacao.getKarateca().getNome());
+		return apresentacao.getFase().getNomeFase().concat(" ").concat(apresentacao.getKata().getNomeKata().concat(" ")).concat(apresentacao.getKarateca().getNome().concat(" ").concat(apresentacao.getCompeticao().getCompeticaoSel()));
 	}
 }

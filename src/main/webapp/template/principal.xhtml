@@ -1,72 +1,74 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-  <title><ui:insert name="title">Default title</ui:insert></title>
+	<title><ui:insert name="title">Default title</ui:insert></title>
 </h:head>
 
 <h:body>
 
-<div id="header">
-    <ui:insert name="header">
-     <div id="shiroK">
-	     <ui:insert name="imagem">
-		   <p:graphicImage value="/imagens/shiro.png" ></p:graphicImage>
-	     </ui:insert>
-     </div>
-      <h:form >
-    	<p:menubar>
-    		<p:submenu label="Exibir">
-    		    <p:menuitem value="Inicio" url="listacompeticoes.jsf"></p:menuitem>
-    		    <p:menuitem value="Categorias" url="listacategorias.jsf"></p:menuitem>
-    		    <p:menuitem value="Fases" url="listafases.jsf"></p:menuitem>		
-    			<p:menuitem value="Dojos" url="listadojos.jsf"></p:menuitem>
-    			<p:separator />
-    			<p:menuitem value="Karatecas" url="listakaratecas.jsf"></p:menuitem>
-    			<p:menuitem value="Katas" url="listakatas.jsf"></p:menuitem>
-    			<p:menuitem value="Juizes" url="listajuizes.jsf"></p:menuitem>
-    		</p:submenu>
-    		<p:submenu label="Processar">
-    			<p:menuitem value="Apresentaçoes" url="listaapresentacoes.jsf"></p:menuitem>
-    			<p:menuitem value="Avaliações" url="listaavaliacoes.jsf"></p:menuitem>
-    		</p:submenu>
-    		<p:submenu label="Relatorios">
-    			<p:menuitem value="Pontuações" outcome="relatorio_de_apresentacoes.jsf" target="_blank"></p:menuitem>
-    			<p:menuitem value="Participantes" outcome="relatorio_de_competidores.jsf" target="_blank"></p:menuitem>
-    			<p:menuitem value="Competição" outcome="relatorio_de_competicao.jsf" target="_blank"></p:menuitem>
-    		</p:submenu>
-    	   <f:facet name="options">
-            <h:outputLink value="j_spring_security_logout">
-            <p:commandButton type="button" value="Sair" icon="ui-icon-extlink" />
-            </h:outputLink>
-           </f:facet>
-    	 </p:menubar>
-    	</h:form>
-    </ui:insert>
-</div>
+	<div id="header">
+		<ui:insert name="header">
+			<div id="shiroK">
+				<ui:insert name="imagem">
+					<p:graphicImage value="/imagens/shiro.png"></p:graphicImage>
+				</ui:insert>
+			</div>
+			<h:form>
+				<p:menubar>
+					<p:submenu label="Exibir">
+						<p:menuitem value="Inicio" url="listacompeticoes.jsf"></p:menuitem>
+						<p:menuitem value="Categorias" url="listacategorias.jsf"></p:menuitem>
+						<p:menuitem value="Fases" url="listafases.jsf"></p:menuitem>
+						<p:menuitem value="Dojos" url="listadojos.jsf"></p:menuitem>
+						<p:separator />
+						<p:menuitem value="Karatecas" url="listakaratecas.jsf"></p:menuitem>
+						<p:menuitem value="Katas" url="listakatas.jsf"></p:menuitem>
+						<p:menuitem value="Juizes" url="listajuizes.jsf"></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Processar">
+						<p:menuitem value="Apresentaçoes" url="listaapresentacoes.jsf"></p:menuitem>
+						<p:menuitem value="Avaliações" url="listaavaliacoes.jsf"></p:menuitem>
+					</p:submenu>
+					<p:submenu label="Relatorios">
+						<p:menuitem value="Pontuações"
+							outcome="relatorio_de_apresentacoes.jsf" target="_blank"></p:menuitem>
+							<p:menuitem value="Competidores"
+							outcome="relatorio_de_competidores.jsf" target="_blank"></p:menuitem>
+					</p:submenu>
+					<f:facet name="options">
+						<h:outputLink value="j_spring_security_logout">
+							<p:commandButton type="button" value="Sair"
+								icon="ui-icon-extlink" />
+						</h:outputLink>
+					</f:facet>
+				</p:menubar>
+			</h:form>
+		</ui:insert>
+	</div>
 
 
-<div id="content">
-  <ui:insert name="content">
+	<div id="content">
+		<ui:insert name="content">
     	Content area.  See comments below this line in the source.
     	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
-	  	<!-- <div> -->
-    	<!-- <ui:include src="content.xhtml"/> -->  
-    	<!-- </div> -->
-  </ui:insert>
-</div>
+			<!-- <div> -->
+			<!-- <ui:include src="content.xhtml"/> -->
+			<!-- </div> -->
+		</ui:insert>
+	</div>
 
-<div id="footer">
-  <ui:insert name="footer">
+	<div id="footer">
+		<ui:insert name="footer">
     	Footer area.  See comments below this line in the source.
     	<!--  include your header file or uncomment the include below and create footer.xhtml in this directory -->
-		<!--<ui:include src="footer.xhtml"/>  -->
-  </ui:insert>
-</div>
+			<!--<ui:include src="footer.xhtml"/>  -->
+		</ui:insert>
+	</div>
 
 </h:body>
 
